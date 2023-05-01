@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect, url_for
 from app import app, db
-from app.forms import LoginForm, RegisterForm
+from app.forms import LoginForm, RegisterForm, ResetPassForm
 from app.models import User
 from flask_login import current_user, login_user, logout_user
 
@@ -42,3 +42,24 @@ def register():
         flash('Account created')
         return redirect(url_for('login'))
     return render_template('register.html', title ='Register', form=form)
+
+@app.route('/reset', methods = ['GET', 'POST'])
+def reset():
+    form = ResetPassForm()
+  
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=form.username.data).first()
+        if user is None:
+            flash("Account doesn't exist")
+            return redirect(url_for("home"))
+        
+        if not user.check_password(form.password.data):
+            flash("Incorrect password")
+            return redirect(url_for("reset"))
+
+        user.set_password(form.new_password.data)
+        db.session.commit()
+        logout_user()
+        return redirect(url_for('login'))
+    
+    return render_template('reset.html', title ='Register', form=form)

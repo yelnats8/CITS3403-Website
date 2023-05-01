@@ -19,14 +19,15 @@ class RegisterForm(FlaskForm):
     def validate_username(self, username):
         user = User.query.filter_by(username=username.data).first()
         if user is not None:
-            raise ValidationError('Please use a different username.')
-
-    def validate_email(self, email):
-        user = User.query.filter_by(email=email.data).first()
-        if user is not None:
-            raise ValidationError('Please use a different email address.')
+            raise ValidationError('Username already exists!')
 
 class ResetPassForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
-    
+    new_password = PasswordField('New Password', validators=[DataRequired()])
+    submit = SubmitField("Reset")
+
+    def validate_username(self, username):
+        user = User.query.filter_by(username=username.data).first()
+        if user is None:
+            raise ValidationError("Username doesn't exist")
