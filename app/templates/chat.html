@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {%block content%}
+<!--
 <div class="chat-box">
     <h2>Chat Room: {{roomCode}}</h2>
     <div class = "messages" id="messages">
@@ -9,17 +10,50 @@
         <button type="button" name="send" id="send-btn" onclick="sendMessage()">Send</button>
     </div>
 </div>
+-->
 
-<script type="text/javascript">
-    var socketio = io();
+<script type="text/javascript" charset="utf-8">
+    var socketio;
+    $(document).ready(function(){
+    socketio = io.connect('http://' + document.domain + ':' + location.port + '/chat');
 
-    const messages = document.getElementById("messages")
+    socketio.on('connect', function() {
+        socketio.emit('joined', {});
+    });
 
-    const createMessage = (name,msg) => {
+    socketio.on('status', function(data) {
+        $('#chat').val($('#chat').val() + '<' + data.msg + '>\n');
+        $('#chat').scrollTop($('#chat')[0].scrollHeight);
+    });
+
+    socketio.on('message', function(data) {
+        $('#chat').val($('#chat').val() + data.msg + '\n');
+        $('#chat').scrollTop($('#chat')[0].scrollHeight);
+    });
+
+    $('#text').keypress(function(e) {
+        var code = e.keyCode || e.which;
+        if (code == 13) {
+            text = $('#text').val();
+            socketio.emit("text", {msg: text});
+            $('#text').val('');
+        }
+    });
+});
+    function leave_room() {
+        socketio.emit('leave', {}, function() {
+            socketio.disconnect();
+            window.loaction.href = "{{ url_for('home') }}";
+        });
+    }
+
+    /*
+    const messages = document.getElementById("messages");
+    const createMessage = (message) => {
         const content = `
             <div class="text">
                 <span>
-                    <strong>${name}</strong>: ${msg}
+                    <strong>${message}</strong>
                 </span>
                 <span class="muted">
                     ${new date().toLocaleString()}
@@ -31,15 +65,25 @@
     };
 
     socketio.on("message"), (data) => {
-        createMessage(data.name, data.message);
-    }
+        createMessage(data.msg);
+        console.log("received msg from server");
+    };
 
     const sendMessage = () => {
-        const message = document.getElementById("message")
+        const message = document.getElementById("message");
         if (message.value == "") return;
-        socketio.emit("message", {data: message.value})
+        socketio.emit("text", {data: message.value});
         message.value = "";
     };
+    */
 </script>
+
+<body>
+    <h1>Flask SocketIO Chat From the Lectures, room code {{roomCode}}</h1>
+    <textarea id="chat" cols="80" rows ="20"></textarea><br><br>
+    <input id="text" size="80" placeholder="Enter your message here"><br><br>
+    <a href="/home" onclick="leave_room();">Leave this room</a>
+</body>
+
 
 {% endblock %}

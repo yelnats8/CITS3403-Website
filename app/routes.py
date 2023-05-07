@@ -19,7 +19,7 @@ def generate_unique_code(length):
     return code
 
 @app.route('/', methods=['GET', 'POST'])
-#@app.route('/home', methods=['GET', 'POST'])
+@app.route('/home', methods=['GET', 'POST'])
 def home():
     if request.method == "POST":
         if current_user.is_authenticated:
@@ -29,12 +29,16 @@ def home():
             create = request.form.get("create", False)
 
             if join != False:
+                """
                 if not code:
                     flash('Please enter a room code')
                     return render_template('home.html', title = 'Home')
                 elif code not in rooms:
                     flash('Room ' +code+ ' does not exist')
                     return render_template('home.html', title = 'Home', roomCode=code)
+                """
+                session["room"] = code
+                return redirect(url_for('chat'))
                 
 
             room = code
@@ -55,8 +59,10 @@ def home():
 @app.route('/chat')
 def chat():
     room = session.get("room")
+    """
     if room is None or room not in rooms:
         return redirect(url_for("home"))
+    """
     return render_template("chat.html")
 
 
