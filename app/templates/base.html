@@ -1,33 +1,35 @@
+<!DOCTYPE html>
 <html>
-    <!-- 
-        @TechnoStasis hi if i change this here it wont change the code on your branch right?
-        - emi
-     -->
-    <head>
-        {% if title %}
-        <title>{{ title }} - microblog</title>
-        {% else %}
-        <title>microblog</title>
-        {% endif %}
-    </head>
-    <body>
-        <div>
-            Microblog:
-            <a href="/home">Home</a>
-            <a href="/register">Register</a>
-            <a href="/login">Login</a>
-            <a href="/logout">Logout</a>
-        </div>
-        <hr>
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        <ul>
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-        {% endwith %}
-        {% block content %}{% endblock %}
-    </body>
+<head>
+    <title>{{ title }}</title>
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="">
+    <!-- stylesheet -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <header> <!-- header wip, will design last -->
+        <img src="" style="width: 20px; height: 20px;"> &nbsp; &nbsp;
+        <h1>Website Name</h1> &nbsp; &nbsp;
+        <a>Home</a> &nbsp; &nbsp;
+        <a>link2</a>
+    </header>
+    <div class="whitebox content">
+        <p>Welcome to [website_name]!</p>
+        <!-- emi does not like the buttons they look ugly. 
+            emi will probably design custom buttons if have time. -->
+        <button class="startchatbtn">Start a new chat</button>
+        <br>      
+        <input id="interestsInput" type="text" placeholder="enter your interests...">
+        <br> 
+        <form class="checkboxes">
+            <input id="inCollegeCheckbox" type="checkbox"> Find students in my college
+            <br>
+            <input id="anonymousCheckbox" type="checkbox"> I want to be anonymous
+        </form>
+        <p>Alternatively, you can discuss a randomly generated question:</p>
+        <button class="startchatbtn">Discuss a question</button>
+        <br> <br>
+    </div>
+</body>
 </html>
