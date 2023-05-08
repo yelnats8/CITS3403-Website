@@ -9,10 +9,14 @@
     <body>
         <div>
             Microblog:
-            <a href="/home">Home</a>
-            <a href="/register">Register</a>
-            <a href="/login">Login</a>
-            <a href="/logout">Logout</a>
+            <a href="{{ url_for('home')}}">Home</a>   <!-- changed to use url_for instead of writing links directly -->
+            {% if current_user.is_anonymous %}
+            <a href="{{ url_for('register')}}">Register</a>
+            <a href="{{ url_for('login')}}">Login</a>
+            {% else %}
+            <a href="{{url_for('user', username=current_user.username)}}">Profile</a>
+            <a href="{{ url_for('logout')}}">Logout</a>
+            {% endif %} 
         </div>
         <hr>
         {% with messages = get_flashed_messages() %}
