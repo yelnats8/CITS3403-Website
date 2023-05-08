@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, url_for
 from app import app, db
 from app.forms import LoginForm, RegisterForm, ResetPassForm
 from app.models import User
-from flask_login import current_user, login_user, logout_user
+from flask_login import current_user, login_user, logout_user, login_required
 
 @app.route('/')
 @app.route('/home')
@@ -65,7 +65,7 @@ def reset():
     return render_template('reset.html', title ='Register', form=form)
 
 @app.route('/user/<username>')  #Following tutorial 
-#@login_required
+@login_required
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
     posts = [
