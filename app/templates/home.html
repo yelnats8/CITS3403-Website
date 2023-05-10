@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Hi {{ current_user.username }}</h2>
+    <h2>Hi {{ current_user.username }}! Start a new chat 👀</h2>
     <!-- emi does not like the buttons they look ugly. 
         emi will probably design custom buttons if have time. -->
     <button class="startchatbtn">Start a new chat</button>
@@ -13,6 +13,6 @@
         <br>
         <input id="anonymousCheckbox" type="checkbox"> I want to be anonymous
     </form>
-    <p>Alternatively, you can discuss a randomly generated question:</p>
+    <h2>Alternatively, you can discuss a randomly generated question:</h2>
     <button class="startchatbtn">Discuss a question</button>
 {% endblock %}

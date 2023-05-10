@@ -19,13 +19,15 @@ header {
 }
 h1 {
     color: lightblue;
+    font-family: serif;
     font-size: large;
     font-weight: 100;
 }
 h2 {
     color: #635154;
+    font-family: serif;
     font-size: medium;
-    font-weight: 200;
+    font-weight: 100;
 }
 body {
     color: #635154;
