@@ -12,11 +12,21 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <header> <!-- header wip, will design last -->
+    <header>
         <img src="" style="width: 20px; height: 20px;"> &nbsp; &nbsp;
         <h1>Website Name</h1> &nbsp; &nbsp;
-        <a>Home</a> &nbsp; &nbsp;
-        <a>link2</a>
+        <a href="{{ url_for('home')}}">Home</a>
+        &nbsp; &nbsp;
+        {% if current_user.is_anonymous %}
+        <a href="{{ url_for('register')}}">Register</a>
+        &nbsp; &nbsp;
+        <a href="{{ url_for('login')}}">Login</a>
+        {% else %}
+        <a href="{{url_for('user', username=current_user.username)}}">Profile</a> <!-- profile? -->
+        &nbsp; &nbsp;
+        <a href="{{ url_for('logout')}}">Logout</a>
+        &nbsp; &nbsp;
+        {% endif %} 
     </header>
     <div class="whitebox content">
         <!-- all content goes here -->
