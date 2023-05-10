@@ -1,5 +1,35 @@
-{% extends "base.html" %}
-
-{% block content %}
-    <h1>Hi, {{ current_user.username }}!</h1>
-{% endblock %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="">
+    <!-- stylesheet -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <header> <!-- header wip, will design last -->
+        <img src="" style="width: 20px; height: 20px;"> &nbsp; &nbsp;
+        <h1>Website Name</h1> &nbsp; &nbsp;
+        <a>Home</a> &nbsp; &nbsp;
+        <a>link2</a>
+    </header>
+    <div class="whitebox content">
+        <p>Hi {{ current_user.username }}</p>
+        <!-- emi does not like the buttons they look ugly. 
+            emi will probably design custom buttons if have time. -->
+        <button class="startchatbtn">Start a new chat</button>
+        <br>      
+        <input id="interestsInput" type="text" placeholder="enter your interests...">
+        <br> 
+        <form class="checkboxes">
+            <input id="inCollegeCheckbox" type="checkbox"> Find students in my college
+            <br>
+            <input id="anonymousCheckbox" type="checkbox"> I want to be anonymous
+        </form>
+        <p>Alternatively, you can discuss a randomly generated question:</p>
+        <button class="startchatbtn">Discuss a question</button>
+        <br> <br>
+    </div>
+</body>
+</html>
