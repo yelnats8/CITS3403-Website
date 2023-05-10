@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{{ title }}</title>
-    <!-- favicon -->
+    {% if title %}
+    <title>{{ title }} - microblog</title>
+    {% else %}
+    <title>microblog</title>
+    {% endif %}
+    <!-- favicon, yet to be made -->
     <link rel="icon" type="image/x-icon" href="">
     <!-- stylesheet -->
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -16,6 +20,7 @@
     </header>
     <div class="whitebox content">
         <!-- all content goes here -->
+        {% block content %}{% endblock %}
         <br> <br>
     </div>
 </body>
