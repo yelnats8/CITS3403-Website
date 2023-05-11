@@ -44,13 +44,17 @@ button.startchatbtn {
     border-radius: 5pt;
     color: #635154;            
     background-color: lightblue;
+    /* hehe */
+    background: url("https://cdn.discordapp.com/attachments/805617679515385897/1086498998619209828/IMG_6748_close_up_of_a_baby.jpg");
     cursor: pointer;
 }
 button.startchatbtn:hover {
     background-color: lightgoldenrodyellow;
+    background: url("https://cdn.discordapp.com/attachments/805617679515385897/1091568749515132948/image.png");
 }
 button.startchatbtn:active {
     background-color: pink;
+    background: url("https://cdn.discordapp.com/attachments/805617679515385897/1096319911527190538/image.png");
 }
 /* INPUT FIELDS */ 
 #interestsInput {
