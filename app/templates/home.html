@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
-<!-- {% if current_user.is_anonymous == false %} 
-     if the user is logged in -->
+{% if current_user.is_anonymous == false %} <!-- if the user is logged in, unsure correct syntax -->
 {% block content %}
     <h2>Hi {{ current_user.username }}! Start a new chat 👀</h2>
     <!-- emi does not like the buttons they look ugly. 
@@ -18,8 +17,7 @@
     <h2>Alternatively, you can discuss a randomly generated question:</h2>
     <button class="startchatbtn">Discuss a question</button>
 {% endblock %}
-<!-- {% else %} 
-    user is not logged in
+{% else %} <!-- user is not logged in -->
 {% block content %}
     <h2>Hi! Please sign in or register to begin a chat.</h2>
     <button class="disabled startchatbtn">Start a new chat</button>
@@ -35,4 +33,3 @@
     <button class="disabled startchatbtn">Discuss a question</button>
 {% endblock %}
 {% endif %}
--->
