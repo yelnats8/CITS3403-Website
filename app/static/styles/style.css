@@ -57,9 +57,10 @@ button.startchatbtn:active {
     background: url("https://cdn.discordapp.com/attachments/805617679515385897/1096319911527190538/image.png");
 }
 /* DISABLED BUTTONS */
-button.startchatbtn.disabled {
+button.startchatbtn.disabled,button.startchatbtn:hover,button.startchatbtn:active {
+    background-color: lightblue;
+    background: url("https://cdn.discordapp.com/attachments/805617679515385897/1086498998619209828/IMG_6748_close_up_of_a_baby.jpg");
     opacity: 0.6;
-    pointer-events: none;
     cursor: not-allowed;
 }
 /* INPUT FIELDS */ 

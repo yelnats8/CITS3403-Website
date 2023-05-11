@@ -5,7 +5,7 @@
     <h2>Hi {{ current_user.username }}! Start a new chat 👀</h2>
     <!-- emi does not like the buttons they look ugly. 
         emi will probably design custom buttons if have time. -->
-    <button class="startchatbtn">Start a new chat</button>
+    <button id="startNewChatBtn" class="startchatbtn">Start a new chat</button>
     <br>      
     <input id="interestsInput" type="text" placeholder="enter your interests...">
     <br> 
@@ -15,10 +15,10 @@
         <input id="anonymousCheckbox" type="checkbox"> I want to be anonymous
     </form>
     <h2>Alternatively, you can discuss a randomly generated question:</h2>
-    <button class="startchatbtn">Discuss a question</button>
+    <button id="StartNewQuestionsModeBtn" class="startchatbtn">Discuss a question</button>
 {% else %} <!-- user is not logged in -->
     <h2>Hi! Please sign in or register to begin a chat.</h2>
-    <button disabled id="startNewChatBtn" class="startchatbtn disabled">Start a new chat</button>
+    <button disabled class="startchatbtn disabled">Start a new chat</button>
     <br>      
     <input id="interestsInput" type="text" placeholder="enter your interests...">
     <br> 
@@ -28,6 +28,6 @@
         <input id="anonymousCheckbox" type="checkbox"> I want to be anonymous
     </form>
     <h2>Alternatively, you can discuss a randomly generated question:</h2>
-    <button disabled id="StartNewQuestionsModeBtn" class="startchatbtn disabled">Discuss a question</button>
+    <button disabled class="startchatbtn disabled">Discuss a question</button>
 {% endif %}
 {% endblock %}
