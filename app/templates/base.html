@@ -14,7 +14,7 @@
 <body>
     <header>
         <img src="" style="width: 20px; height: 20px;"> &nbsp; &nbsp;
-        <h1>Website Name</h1> &nbsp; &nbsp;
+        <h1>{{ title }}</h1> &nbsp; &nbsp;
         <a href="{{ url_for('home')}}">Home</a>
         &nbsp; &nbsp;
         {% if current_user.is_anonymous %}

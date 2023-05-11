@@ -2,32 +2,38 @@
 
 {% block content %}
 {% if current_user.is_anonymous == false %} <!-- if the user is logged in, unsure correct syntax -->
-    <h2>Hi {{ current_user.username }}! Start a new chat 👀</h2>
-    <!-- emi does not like the buttons they look ugly. 
-        emi will probably design custom buttons if have time. -->
-    <button id="startNewChatBtn" class="startchatbtn">Start a new chat</button>
-    <br>      
-    <input id="interestsInput" type="text" placeholder="enter your interests...">
-    <br> 
-    <form class="checkboxes">
-        <input id="inCollegeCheckbox" type="checkbox"> Find students in my college
-        <br>
-        <input id="anonymousCheckbox" type="checkbox"> I want to be anonymous
-    </form>
-    <h2>Alternatively, you can discuss a randomly generated question:</h2>
-    <button id="StartNewQuestionsModeBtn" class="startchatbtn">Discuss a question</button>
+<nobr>
+<h2>Welcome to {{ title }}!</h2>
+<p>Hi {{ current_user.username }}! Start a new chat 👀</p>
+</nobr>
+<!-- emi does not like the buttons they look ugly. 
+    emi will probably design custom buttons if have time. -->
+<button id="startNewChatBtn" class="startchatbtn">Start a new chat</button>
+<br>      
+<input id="interestsInput" type="text" placeholder="enter your interests...">
+<br> 
+<form class="checkboxes">
+    <input id="inCollegeCheckbox" type="checkbox"> Find students in my college
+    <br>
+    <input id="anonymousCheckbox" type="checkbox"> I want to be anonymous
+</form>
+<p>Alternatively, you can discuss a randomly generated question:</p>
+<button id="StartNewQuestionsModeBtn" class="startchatbtn">Discuss a question</button>
 {% else %} <!-- user is not logged in -->
-    <h2>Hi! Please sign in or register to begin a chat.</h2>
-    <button disabled class="startchatbtn disabled">Start a new chat</button>
-    <br>      
-    <input id="interestsInput" type="text" placeholder="enter your interests...">
-    <br> 
-    <form class="checkboxes">
-        <input id="inCollegeCheckbox" type="checkbox"> Find students in my college
-        <br>
-        <input id="anonymousCheckbox" type="checkbox"> I want to be anonymous
-    </form>
-    <h2>Alternatively, you can discuss a randomly generated question:</h2>
-    <button disabled class="startchatbtn disabled">Discuss a question</button>
+<nobr>
+<h2>Welcome to {{ title }}!</h2>
+<p>Please sign in or register to begin a chat.</p>
+</nobr>
+<button disabled class="startchatbtn disabled">Start a new chat</button>
+<br>      
+<input disabled id="interestsInput" type="text" placeholder="enter your interests...">
+<br> 
+<form class="checkboxes">
+    <input disabled id="inCollegeCheckbox" type="checkbox"> Find students in my college
+    <br>
+    <input disabled id="anonymousCheckbox" type="checkbox"> I want to be anonymous
+</form>
+<p>No you have to be signed in to click this button.</p>
+<button disabled class="startchatbtn disabled">Discuss a question</button>
 {% endif %}
 {% endblock %}
