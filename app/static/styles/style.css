@@ -56,8 +56,10 @@ button.startchatbtn:active {
     background-color: pink;
     background: url("https://cdn.discordapp.com/attachments/805617679515385897/1096319911527190538/image.png");
 }
-button.disabledbtn {
+/* DISABLED BUTTONS */
+button.startchatbtn.disabled {
     opacity: 0.6;
+    pointer-events: none;
     cursor: not-allowed;
 }
 /* INPUT FIELDS */ 
