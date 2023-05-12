@@ -34,7 +34,7 @@ body {
     background-color: lightgoldenrodyellow;
     font-family: 'Gill Sans MT';
 }
-/* BUTTONS */
+/* LINKS */
 a.headerbtn {
     color: lightblue;
     text-decoration: none;
@@ -43,6 +43,13 @@ a.headerbtn:visited {
     color: pink;
     text-decoration: none;
 }
+a {
+    color: lightblue;
+}
+a:visited {
+    color: pink;
+}
+/* BUTTONS */
 button.startchatbtn {
     padding: 10px;
     width: 51%;
