@@ -7,7 +7,7 @@ from flask_login import current_user, login_user, logout_user
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('home.html', title = 'ELMO')
+    return render_template('home.html', title = 'Home')
 
 
 @app.route('/logout')
