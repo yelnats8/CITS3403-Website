@@ -86,8 +86,9 @@ form.checkboxes {
 .content {          
     margin-top: 10%;
     margin-bottom: 10%;
-    margin-left: 30%;
-    margin-right: 30%;
+    /* eventually want to do calc screen res - i.e. 300px */
+    margin-left: 350px; 
+    margin-right: 350px;
     height: 400px;
     display: flex;
     flex-direction: column;
