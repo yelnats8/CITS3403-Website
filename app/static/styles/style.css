@@ -17,7 +17,7 @@ header {
     align-items: center;
     background-color: white;
 }
-h1 {
+h1 { /* title of webpage */
     color: lightblue;
     font-family: serif;
     font-size: larger;
@@ -53,23 +53,21 @@ a:visited {
 button.startchatbtn {
     padding: 10px;
     width: 51%;
-    border-style: solid;
-    border-width: thin;
-    border-color: #635154;
     border-radius: 5pt;
-    color: #635154;            
-    background-color: lightblue;
+    color: #435a61;            
+    background-color: #a4e1f5;
     cursor: pointer;
 }
 button.startchatbtn:hover {
-    background-color: lightgoldenrodyellow;
+    background-color: #a4e1f5;
 }
 button.startchatbtn:active {
-    background-color: pink;
+    background-color: #a4e1f5;
+    opacity: 90%;
 }
 /* DISABLED BUTTONS */
 button.startchatbtn.disabled,button.startchatbtn:hover,button.startchatbtn:active {
-    background-color: lightblue;
+    background-color: #a4e1f5;
     opacity: 0.6;
     cursor: not-allowed;
 }
