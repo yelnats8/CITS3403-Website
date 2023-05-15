@@ -24,7 +24,7 @@ h1 { /* title of webpage */
     font-weight: 100;
 }
 h2 {
-    color: #635154;
+    color: pink;
     font-family: serif;
     font-size: large;
     font-weight: 100;
@@ -60,10 +60,11 @@ button.startchatbtn {
 }
 button.startchatbtn:hover {
     background-color: #a4e1f5;
+    opacity: 90%;
 }
 button.startchatbtn:active {
     background-color: #a4e1f5;
-    opacity: 90%;
+    opacity: 80%;
 }
 /* DISABLED BUTTONS */
 button.startchatbtn.disabled,button.startchatbtn:hover,button.startchatbtn:active {
