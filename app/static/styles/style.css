@@ -50,6 +50,15 @@ a:visited {
     color: pink;
 }
 /* BUTTONS */
+button.bluebtn {
+    padding: 5px;
+    width: max-content;
+    border: thin 1px #435a61;
+    border-radius: 3pt;
+    color: #435a61;            
+    background-color: #a4e1f5;
+    cursor: pointer;
+}
 button.startchatbtn {
     padding: 10px;
     width: 51%;
@@ -87,6 +96,7 @@ form.checkboxes {
     line-height: 20pt;
 }
 .errortext {
+    display: none;
     font-size: small;
     color: red;
 }

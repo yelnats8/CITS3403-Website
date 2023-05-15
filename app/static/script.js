@@ -8,6 +8,7 @@ var userLoggedIn = false;
 if ("disabled" in startchatbuttons.classname == false) {userLoggedIn = true;} 
 // ideally add an event listener to when user logs in or out
 
+
 // dimensions of window
 var width = window.innerWidth;
 var height = window.innerHeight;
@@ -15,3 +16,15 @@ var height = window.innerHeight;
 window.onresize = function(event) {
     if (width < 700 && height < 1000) {device == "mobile";}
 };
+
+// LOGIN AND REGISTERING
+var requiredfields = document.getElementsByClassName("inputFields");
+var errortext = document.getElementsByClassName("errortext");
+
+// if login/register receives error
+function createErrorText() {
+    for (let i = 0; i < requiredfields.length; i++) {
+        errortext[i].style.display = "block";
+    }
+    return;
+}
