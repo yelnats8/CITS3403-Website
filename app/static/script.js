@@ -15,11 +15,3 @@ var height = window.innerHeight;
 window.onresize = function(event) {
     if (width < 700 && height < 1000) {device == "mobile";}
 };
-
-// debugging bc i cant log on
-function logIn() {
-    for (var i = 0; i < buttons.length; i++) {
-        startchatbuttons[i].remove("disabled");
-    }
-    return;
-}
