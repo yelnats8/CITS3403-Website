@@ -73,12 +73,22 @@ button.startchatbtn.disabled,button.startchatbtn:hover,button.startchatbtn:activ
     cursor: not-allowed;
 }
 /* INPUT FIELDS */ 
+.inputLabel {
+    line-height: 1pt;
+}
+.inputFields {
+    width: 300px;
+}
 #interestsInput {
     width: 50%;
     height: max-content;
 }
 form.checkboxes {
     line-height: 20pt;
+}
+.errortext {
+    font-size: small;
+    color: red;
 }
 /* DISPLAY */
 .whitebox {

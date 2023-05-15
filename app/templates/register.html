@@ -4,29 +4,24 @@
 <h2>Register</h2>
 <form action="" method="post" novalidate>
     {{ form.hidden_tag() }}
-    <p>
-        {{ form.username.label }}<br>
-        {{ form.username(size=32) }}<br>
-        {% for error in form.username.errors %}
-        <span style="color: red;">[{{ error }}]</span>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.password.label }}<br>
-        {{ form.password(size=32) }}<br>
-        {% for error in form.password.errors %}
-        <span style="color: red;">[{{ error }}]</span>
-        {% endfor %}
-    </p>
-
-    <p>         
-        {{ form.confirm_password.label }}<br>
-        {{ form.confirm_password(size=32) }}<br>
-        {% for error in form.confirm_password.errors %}
-        <span style="color: red;">[{{ error }}]</span>
-        {% endfor %}
-    </p>
-
+    <p class="inputLabel">Create username</p>
+    <input class="inputFields" id="username">
+    <br>
+    {% for error in form.username.errors %}
+    <span class="errortext">[{{ error }}]</span>
+    {% endfor %}
+    <p class="inputLabel">Create password</p>
+    <input class="inputFields" id="username">
+    <br>
+    {% for error in form.username.errors %}
+    <span class="errortext">[{{ error }}]</span>
+    {% endfor %}
+    <p class="inputLabel">Confirm password</p>
+    <input class="inputFields" id="username">
+    <br>
+    {% for error in form.username.errors %}
+    <span class="errortext">[{{ error }}]</span>
+    {% endfor %}
     <p>{{ form.submit() }}</p>
 </form>
 {% endblock %}
