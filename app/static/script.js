@@ -20,11 +20,3 @@ window.onresize = function(event) {
 // LOGIN AND REGISTERING
 var requiredfields = document.getElementsByClassName("inputFields");
 var errortext = document.getElementsByClassName("errortext");
-
-// if login/register receives error
-function createErrorText() {
-    for (let i = 0; i < requiredfields.length; i++) {
-        errortext[i].style.display = "block";
-    }
-    return;
-}

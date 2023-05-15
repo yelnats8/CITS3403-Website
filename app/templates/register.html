@@ -1,24 +1,30 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Register</h2>
+<h2>Create an account</h2>
 <form action="" method="post" novalidate>
-    <p class="inputLabel">Create username</p>
+    {{ form.hidden_tag() }}
+    <p class="inputLabel">Username</p>
     <input class="inputFields" id="username">
-    <span class="errortext">This field is required.</span>
     <br>
-    <p class="inputLabel">Create password</p>
+    {% for error in form.username.errors %}
+    <span class="errortext">[{{ error }}]</span>
+    {% endfor %}
+    <br>
+    <p class="inputLabel">Password</p>
     <input class="inputFields" id="password">
-    <span class="errortext">This field is required.</span>
+    <br>
+    {% for error in form.username.errors %}
+    <span class="errortext">[{{ error }}]</span>
+    {% endfor %}
     <br>
     <p class="inputLabel">Confirm password</p>
     <input class="inputFields">
-    <span class="errortext">This field is required.</span>
-    <br>
     <br>
     {% for error in form.username.errors %}
-    <script>createErrorText()</script>
+    <span class="errortext">[{{ error }}]</span>
     {% endfor %}
-    <button class="bluebtn" type="submit">Register</button>
+    <br> <br>
+    <button class="submitbtn" type="submit">Register</button>
 </form>
 {% endblock %}
