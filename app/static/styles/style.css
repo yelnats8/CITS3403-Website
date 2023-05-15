@@ -94,14 +94,13 @@ form.checkboxes {
     display: none;
     width: 500px;
 }
-.content {          
+.content {   
+    position: fixed; /* i dont want it to resize with the page */   
     margin-top: 10%;
     margin-bottom: 10%;
     /* eventually want to do calc screen res - i.e. 550px or 30% */
-    /*
     margin-left: 550px; 
     margin-right: 550px;
-    */
     width: 700px;
     height: 400px;
     display: flex;
