@@ -18,32 +18,26 @@ window.onresize = function(event) {
 };
 
 // LOGIN AND REGISTERING
-function loadVarLogRegReset() { // set variables
-    var requiredfields = document.getElementsByClassName("inputFields");
-    var username = document.getElementById("username");
-    var password = document.getElementById("password");
-    var confirmpassword = document.getElementById("confirm_password");
-    var errortext = document.getElementById("errortext");
-}
-
 var form = document.getElementById("registerForm"); // Reference the form element
 
 form.addEventListener('submit', function (event) {
     checkRegister();
-    loadVarLogRegReset();
 });
 
 function checkRegister() {
-    loadVarLogRegReset();
-    if (username.value == "" || password.value == "") {
-        errortext.innerHTML = "Please enter a username and password.";
+    if (confirm_password.value == "") {
+        errortext.innerHTML = "Please confirm your password.";
         event.preventDefault(); // Prevent form submission
     }
-    // TODO: if confirm password is empty, form still submits
-    else if (password.value != "" && confirmpassword.value != "") {
-        if (password.value != confirmpassword.value) {
+    else if (password.value != "" || confirm_password.value != "") {
+        if (password.value != confirm_password.value) {
             errortext.innerHTML = "Passwords do not match.";
             event.preventDefault(); // Prevent form submission
         }
     }
+    if (username.value == "" || password.value == "") {
+        errortext.innerHTML = "Please enter a username and password.";
+        event.preventDefault(); // Prevent form submission
+    }
+    
 }
