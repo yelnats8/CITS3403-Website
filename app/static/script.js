@@ -39,6 +39,7 @@ function checkRegister() {
         errortext.innerHTML = "Please enter a username and password.";
         event.preventDefault(); // Prevent form submission
     }
+    // TODO: if confirm password is empty, form still submits
     else if (password.value != "" && confirmpassword.value != "") {
         if (password.value != confirmpassword.value) {
             errortext.innerHTML = "Passwords do not match.";
