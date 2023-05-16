@@ -40,18 +40,11 @@ body {
 }
 /* LINKS */
 a.headerbtn {
-    color: lightblue;
-    text-decoration: none;
-}
-a.headerbtn:visited {
     color: pink;
     text-decoration: none;
 }
 a {
     color: lightblue;
-}
-a:visited {
-    color: pink;
 }
 /* BUTTONS */
 button.submitbtn { /* login, register, reset */

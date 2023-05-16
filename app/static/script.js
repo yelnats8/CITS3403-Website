@@ -18,12 +18,10 @@ window.onresize = function(event) {
 };
 
 // LOGIN AND REGISTERING
-var form = document.getElementById("registerForm"); // Reference the form element
-
-form.addEventListener('submit', function (event) {
+var registerForm = document.getElementById("registerForm");
+registerForm.addEventListener('submit', function (event) {
     checkRegister();
 });
-
 function checkRegister() {
     if (confirm_password.value == "") {
         errortext.innerHTML = "Please confirm your password.";
@@ -40,4 +38,14 @@ function checkRegister() {
         event.preventDefault(); // Prevent form submission
     }
     
+}
+var loginForm = document.getElementById("loginForm");
+loginForm.addEventListener('submit', function (event) {
+    checkLogin();
+});
+function checkLogin() {
+    if (username.value == "" || password.value == "") {
+        errortext.innerHTML = "Please enter a username and password.";
+        event.preventDefault(); // Prevent form submission
+    }
 }
