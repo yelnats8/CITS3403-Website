@@ -1,32 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Reset</h2>
-<form action="" method="post" novalidate>
+<h1>Reset</h1>
+<span id="errortext"></span>
+<form id="resetForm" action="" method="post" novalidate onsubmit="checkReset();">
     {{ form.hidden_tag() }}
-    <p>
-        {{ form.username.label }}<br>
-        {{ form.username(size=32) }}<br>
-        {% for error in form.username.errors %}
-        <span class="errortext">[{{ error }}]</span>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.password.label }}<br>
-        {{ form.password(size=32) }}<br>
-        {% for error in form.password.errors %}
-        <span class="errortext">[{{ error }}]</span>
-        {% endfor %}
-    </p>
-
-    <p>         
-        {{ form.new_password.label }}<br>
-        {{ form.new_password(size=32) }}<br>
-        {% for error in form.new_password.errors %}
-        <span class="errortext">[{{ error }}]</span>
-        {% endfor %}
-    </p>
-
-    <p>{{ form.submit() }}</p>
+    <p class="inputLabel">{{ form.username.label}}</p>
+    {{ form.username(class_="inputFields")}}
+    
+    <p class="inputLabel">{{ form.password.label}}</p>
+    {{ form.password(class_="inputFields")}}
+    
+    <p class="inputLabel">{{ form.new_password.label}}</p>
+    {{ form.new_password(class_="inputFields")}}
+    
+    <div style="height: 23px;"></div>
+    <button class="submitbtn" type="submit">Reset</button>
 </form>
+<script src="{{ url_for('static',filename='reset.js') }}"></script>
 {% endblock %}
