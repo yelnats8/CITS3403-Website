@@ -22,7 +22,7 @@ function loadVarLogRegReset() { // set variables
     var requiredfields = document.getElementsByClassName("inputFields");
     var username = document.getElementById("username");
     var password = document.getElementById("password");
-    var confirmpassword = document.getElementById("confirmpassword");
+    var confirmpassword = document.getElementById("confirm_password");
     var errortext = document.getElementById("errortext");
 }
 

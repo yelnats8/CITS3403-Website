@@ -1,17 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="h1nolinebreaks">Website Name</h1> 
+<h1 class="h1nolinebreaks">Website Name</h1>
 <span id="errortext"></span>
 <form id="registerForm" action="" method="post" novalidate onsubmit="checkRegister();">
-    <p class="inputLabel">Username</p>
-    <input class="inputFields" id="username">
-    <br>
-    <p class="inputLabel">Password</p>
-    <input class="inputFields" id="password" type="password">
-    <br>
-    <p class="inputLabel">Confirm password</p>
-    <input class="inputFields" id="confirmpassword" type="password">
+    {{ form.hidden_tag() }}
+    <p class="inputLabel">{{ form.username.label}}</p>
+    {{ form.username(class_="inputFields")}}
+    
+    <p class="inputLabel">{{ form.password.label}}</p>
+    {{ form.password(class_="inputFields")}}
+    
+    <p class="inputLabel">{{ form.confirm_password.label}}</p>
+    {{ form.confirm_password(class_="inputFields")}}
+    
     <div style="height: 23px;"></div>
     <button class="submitbtn" type="submit">Register</button>
 </form>
