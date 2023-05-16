@@ -23,6 +23,10 @@ h1 { /* title of webpage */
     font-size: larger;
     font-weight: 100;
 }
+.h1nolinebreaks {
+    display: inline;
+    margin: 0;
+}
 h2 {
     color: pink;
     font-family: serif;
@@ -51,9 +55,10 @@ a:visited {
 }
 /* BUTTONS */
 button.submitbtn { /* login, register, reset */
-    padding: 5px;
-    width: 50%;
+    padding: 8px;
+    width: 100%;
     border-radius: 3pt;
+    border: none;
     border-color: #85b1c0;
     color: #435a61;     
     background-color: #a4e1f5;
@@ -84,8 +89,7 @@ button.startchatbtn:active {
     opacity: 80%;
 }
 /* DISABLED BUTTONS */
-button.startchatbtn.disabled,button.startchatbtn:hover,button.startchatbtn:active {
-    background-color: #a4e1f5;
+button.disabled,button.disabled:hover,button.disabled:active {
     opacity: 0.6;
     cursor: not-allowed;
 }
@@ -94,7 +98,7 @@ button.startchatbtn.disabled,button.startchatbtn:hover,button.startchatbtn:activ
     line-height: 1pt;
 }
 .inputFields {
-    width: 300px;
+    width: 230px;
 }
 #interestsInput {
     width: 50%;
@@ -103,8 +107,7 @@ button.startchatbtn.disabled,button.startchatbtn:hover,button.startchatbtn:activ
 form.checkboxes {
     line-height: 20pt;
 }
-.errortext {
-    z-index: 1;
+#errortext {
     font-size: small;
     color: red;
 }

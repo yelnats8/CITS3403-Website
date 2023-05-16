@@ -1,30 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Create an account</h2>
-<form action="" method="post" novalidate>
-    {{ form.hidden_tag() }}
+<h1 class="h1nolinebreaks">Website Name</h1> 
+<span id="errortext"></span>
+<form id="registerForm" action="" method="post" novalidate onsubmit="checkRegister();">
     <p class="inputLabel">Username</p>
     <input class="inputFields" id="username">
     <br>
-    {% for error in form.username.errors %}
-    <span class="errortext">[{{ error }}]</span>
-    {% endfor %}
-    <br>
     <p class="inputLabel">Password</p>
-    <input class="inputFields" id="password">
-    <br>
-    {% for error in form.username.errors %}
-    <span class="errortext">[{{ error }}]</span>
-    {% endfor %}
+    <input class="inputFields" id="password" type="password">
     <br>
     <p class="inputLabel">Confirm password</p>
-    <input class="inputFields">
-    <br>
-    {% for error in form.username.errors %}
-    <span class="errortext">[{{ error }}]</span>
-    {% endfor %}
-    <br> <br>
+    <input class="inputFields" id="confirmpassword" type="password">
+    <div style="height: 23px;"></div>
     <button class="submitbtn" type="submit">Register</button>
 </form>
 {% endblock %}
