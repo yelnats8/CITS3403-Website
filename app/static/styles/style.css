@@ -100,6 +100,21 @@ button.disabled,button.disabled:hover,button.disabled:active {
 #interestsInput {
     width: 50%;
     height: max-content;
+    border: 1px solid #cccccc;
+    border-radius: 2pt;
+    padding: 2px;
+    text-align: left;
+    font-family: 'Gill Sans MT';
+}
+#interestsPlaceholder {
+    color: #999999;
+}
+.interestTag {
+    display: inline-block;
+    background-color: #85b1c0;
+    padding: 4px 8px;
+    margin: 4px;
+    border-radius: 4px;
 }
 form.checkboxes {
     line-height: 20pt;
@@ -130,6 +145,15 @@ form.checkboxes {
     text-align: center;
 }
 /* FOR MOBILE DEVICES */
+.headerMobile {
+    height: 8%;
+}
+.h1Mobile {
+    font-size: 200%;
+}
+.headerbtnMobile {
+    font-size: 150%;
+}
 .contentMobile {
     top: auto;
     bottom: auto;

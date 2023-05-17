@@ -1,6 +1,7 @@
 // header items
 var header = document.getElementsByTagName("header");
 var h1 = document.getElementsByTagName("h1");
+var headerbtn = document.getElementsByClassName("headerbtn");
 // div classes - arrays
 var whitebox = document.getElementsByClassName("whitebox");
 var content = document.getElementsByClassName("content");
@@ -25,7 +26,16 @@ function checkDevice() {
     }
     if (isMobile) {
         device = "mobile";
-        for (let i = 0; i < content.length; i++) {
+        // make header and header items bigger
+        header[0].classList.add('headerMobile');
+        h1[0].classList.add('h1Mobile');
+        for (var i = 0; i < headerbtn.length; i++) {
+            headerbtn[i].setAttribute('data-index', i); // debug
+            console.log('Element at index', i, headerbtn[i]); // debug
+            headerbtn[i].classList.add('headerbtnMobile');           
+        }
+        // make content div fit whole screen
+        for (var i = 0; i < content.length; i++) {
             content[i].classList.add('contentMobile');   
             content[i].classList.remove('content');          
         }
