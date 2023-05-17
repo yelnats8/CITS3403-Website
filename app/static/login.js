@@ -6,6 +6,6 @@ loginForm.addEventListener('submit', function (event) {
 function checkLogin() {
     if (username.value == "" || password.value == "") {
         errortext.innerHTML = "Please enter a username and password.";
-        event.preventDefault(); // Prevent form submission
+        event.preventDefault();
     }
 }

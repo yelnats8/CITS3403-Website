@@ -6,17 +6,17 @@ resetForm.addEventListener('submit', function (event) {
 function checkReset() {
     if (new_password.value == "") {
         errortext.innerHTML = "Please enter a new password.";
-        event.preventDefault(); // Prevent form submission
+        event.preventDefault(); 
     }
     else if (password.value != "" || new_password.value != "") {
         if (password.value === new_password.value) {
             errortext.innerHTML = "Passwords are the same.";
-            event.preventDefault(); // Prevent form submission
+            event.preventDefault(); 
         }
     }
     if (username.value == "" || password.value == "") {
         errortext.innerHTML = "Please enter a username and password.";
-        event.preventDefault(); // Prevent form submission
+        event.preventDefault();
     }
     
 }

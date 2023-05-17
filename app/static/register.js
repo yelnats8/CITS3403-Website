@@ -6,17 +6,17 @@ registerForm.addEventListener('submit', function (event) {
 function checkRegister() {
     if (confirm_password.value == "") {
         errortext.innerHTML = "Please confirm your password.";
-        event.preventDefault(); // Prevent form submission
+        event.preventDefault(); 
     }
     else if (password.value != "" || confirm_password.value != "") {
         if (password.value != confirm_password.value) {
             errortext.innerHTML = "Passwords do not match.";
-            event.preventDefault(); // Prevent form submission
+            event.preventDefault(); 
         }
     }
     if (username.value == "" || password.value == "") {
         errortext.innerHTML = "Please enter a username and password.";
-        event.preventDefault(); // Prevent form submission
+        event.preventDefault(); 
     }
     
 }
