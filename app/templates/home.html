@@ -3,7 +3,7 @@
 {% block content %}
 {% if current_user.is_anonymous == false %} <!-- if the user is logged in, unsure correct syntax -->
 <nobr>
-<h2>Welcome to {{ title }}!</h2>
+<h3>Welcome to {{ title }}!</h3>
 <p>Hi {{ current_user.username }}! Start a new chat 👀</p>
 </nobr>
 <!-- emi does not like the buttons they look ugly. 
@@ -21,7 +21,7 @@
 <button id="StartNewQuestionsModeBtn" class="startchatbtn">Discuss a question</button>
 {% else %} <!-- user is not logged in -->
 <nobr>
-<h2>Welcome to {{ title }}!</h2>
+<h3>Welcome to {{ title }}!</h3>
 <p>Please sign in or register to begin a chat.</p>
 </nobr>
 <button disabled class="startchatbtn disabled">Start a new chat</button>

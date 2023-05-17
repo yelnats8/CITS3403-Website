@@ -1,11 +1,11 @@
-// load variables
-function loadVar() {
-    // divs
-    var whitebox = document.getElementsByClassName("whitebox");
-    var content = document.getElementsByClassName("content");
-    // buttons
-    var startchatbuttons = document.getElementsByClassName("startchatbtn");
-}
+// header items
+var header = document.getElementsByTagName("header");
+var h1 = document.getElementsByTagName("h1");
+// div classes - arrays
+var whitebox = document.getElementsByClassName("whitebox");
+var content = document.getElementsByClassName("content");
+// buttons
+var startchatbuttons = document.getElementsByClassName("startchatbtn");
 
 checkDevice();
 
@@ -25,6 +25,10 @@ function checkDevice() {
     }
     if (isMobile) {
         device = "mobile";
+        for (let i = 0; i < content.length; i++) {
+            content[i].classList.add('contentMobile');   
+            content[i].classList.remove('content');          
+        }
     } 
     else {
         device = "computer";
