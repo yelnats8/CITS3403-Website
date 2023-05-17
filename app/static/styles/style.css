@@ -113,29 +113,11 @@ form.checkboxes {
     border-radius: 5pt;
     background-color: white;
 }
-.invisibox {
-    display: inline;
-    opacity: 0%;
-    width: 20%;
-}
-.invisibox.invisiboxL {
-    left: 0;
-}
-.invisibox.invisiboxR {
-    right: 0;
-}
-.center {
-    margin: auto;
-    width: 50%;
-    border: 3px solid green;
-    padding: 10px;
-  }  
 .content {   
     margin: auto; 
     margin-top: 10%;
     margin-bottom: 10%;
-    /* eventually want to do calc screen res - i.e. 550px or 30% */
-    width: 650px;
+    width: 700px;
     height: 400px;
     display: flex;
     flex-direction: column;

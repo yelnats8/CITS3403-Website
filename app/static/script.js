@@ -1,4 +1,3 @@
-
 // load variables
 function loadVar() {
     // divs
@@ -8,6 +7,8 @@ function loadVar() {
     var startchatbuttons = document.getElementsByClassName("startchatbtn");
 }
 
+checkDevice();
+
 // default
 var userLoggedIn = false;
 // if user is logged on
@@ -15,19 +16,22 @@ var userLoggedIn = false;
 // ideally add an event listener to when user logs in or out
 
 // RESPONSIVITY FOR DEVICE TYPE
-// chatgpt gave me this lol
-var isMobile = false;
-if ('ontouchstart' in window || navigator.maxTouchPoints) {
-    isMobile = true;
-}
-if (isMobile) {
-    // device is mobile
-} 
-else {
-    // not mobile, keep current css
+function checkDevice() {
+    var isMobile = false;
+    var device = "";
+    // determines touch support
+    if ('ontouchstart' in window || navigator.maxTouchPoints) {
+        isMobile = true;
+    }
+    if (isMobile) {
+        device = "mobile";
+    } 
+    else {
+        device = "computer";
+    }
+    console.log("you are on " + device);
 }
 
-// and this is my pathetic code
 var width = window.innerWidth;
 var height = window.innerHeight;
 // window.addEventListener("resize", reportWindowSize);
