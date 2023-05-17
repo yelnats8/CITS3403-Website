@@ -114,17 +114,28 @@ form.checkboxes {
     background-color: white;
 }
 .invisibox {
-    display: none;
-    width: 500px;
+    display: inline;
+    opacity: 0%;
+    width: 20%;
 }
+.invisibox.invisiboxL {
+    left: 0;
+}
+.invisibox.invisiboxR {
+    right: 0;
+}
+.center {
+    margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
+  }  
 .content {   
-    position: fixed; /* i dont want it to resize with the page */   
+    margin: auto; 
     margin-top: 10%;
     margin-bottom: 10%;
     /* eventually want to do calc screen res - i.e. 550px or 30% */
-    margin-left: 550px; 
-    margin-right: 550px;
-    width: 700px;
+    width: 45%;
     height: 400px;
     display: flex;
     flex-direction: column;
