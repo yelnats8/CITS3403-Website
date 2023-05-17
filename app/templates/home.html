@@ -10,7 +10,7 @@
     emi will probably design custom buttons if have time. -->
 <button id="startNewChatBtn" class="startchatbtn">Start a new chat</button>
 <br>
-<div id="interestsInput" contenteditable="true"></div>
+<div class="interestsPlaceholder" id="interestsInput" contenteditable="true">Enter your interests...</div>
 <br> 
 <form class="checkboxes">
     <input id="inCollegeCheckbox" type="checkbox"> Find students in my college
@@ -26,7 +26,7 @@
 </nobr>
 <button disabled class="startchatbtn disabled">Start a new chat</button>
 <br>      
-<div id="interestsInput" contenteditable="true"></div>
+<div class="interestsPlaceholder" id="interestsInput" contenteditable="true" >Enter your interests...</div>
 <br> 
 <form class="checkboxes">
     <input disabled id="inCollegeCheckbox" type="checkbox"> Find students in my college
@@ -36,4 +36,5 @@
 <p>No you have to be signed in to click this button.</p>
 <button disabled class="startchatbtn disabled">Discuss a question</button>
 {% endif %}
+<script src="{{ url_for('static',filename='home.js') }}"></script>
 {% endblock %}
