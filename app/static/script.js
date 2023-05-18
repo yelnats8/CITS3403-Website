@@ -34,6 +34,7 @@ function checkDevice() {
         }
         // make content div fit whole screen
         for (var i = 0; i < content.length; i++) {
+            content[i].classList.add('whiteboxMobile');
             content[i].classList.add('contentMobile');   
             content[i].classList.remove('content');          
         }
