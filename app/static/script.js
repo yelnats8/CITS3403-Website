@@ -10,10 +10,8 @@ var startchatbuttons = document.getElementsByClassName("startchatbtn");
 
 checkDevice();
 
-// default
-var userLoggedIn = false;
-// if user is logged on
-// if ("disabled" in startchatbuttons.classname == false) {userLoggedIn = true;} 
+// var userLoggedIn = false;
+// if (startchatbuttons.classname.includes("disabled")) {userLoggedIn = true;} 
 // ideally add an event listener to when user logs in or out
 
 // RESPONSIVITY FOR DEVICE TYPE
@@ -30,8 +28,8 @@ function checkDevice() {
         header[0].classList.add('headerMobile');
         h1[0].classList.add('h1Mobile');
         for (var i = 0; i < headerbtn.length; i++) {
-            headerbtn[i].setAttribute('data-index', i); // debug
-            console.log('Element at index', i, headerbtn[i]); // debug
+            // headerbtn[i].setAttribute('data-index', i); // debug
+            // console.log('Element at index', i, headerbtn[i]); // debug
             headerbtn[i].classList.add('headerbtnMobile');           
         }
         // make content div fit whole screen
