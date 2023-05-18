@@ -10,7 +10,13 @@
     emi will probably design custom buttons if have time. -->
 <button id="startNewChatBtn" class="startchatbtn">Start a new chat</button>
 <br>
-<div class="interestsPlaceholder" id="interestsInput" contenteditable="true">Enter your interests...</div>
+<div id="interestsDiv">
+    <div id="interestsTagsDiv"></div>
+    <form input type="text">
+        <input type="text" id="interestsInput" placeholder="Enter your interests...">
+        <button onclick="createTag(document.getElementById('interestsInput').value); return false;">enter</button>
+    </form>
+</div>
 <br> 
 <form class="checkboxes">
     <input id="inCollegeCheckbox" type="checkbox"> Find students in my college

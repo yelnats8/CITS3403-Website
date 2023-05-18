@@ -1,36 +1,40 @@
-var interestsDiv = document.getElementById("interestsInput");
+var interestsTagsDiv = document.getElementById("interestsTagsDiv");
+var interestsDiv = document.getElementById("interestsDiv");
+var interestsInput = document.getElementById("interestsInput");
 
 // INTERESTS INPUT
 // add placeholder
-interestsDiv.addEventListener('focus', function() {
-    if (interestsDiv.classList.contains('interestsPlaceholder')) {
-        interestsDiv.textContent = '';
-        interestsDiv.classList.remove('interestsPlaceholder');
+/*
+interestsInput.addEventListener('focus', function() {
+    if (interestsInput.classList.contains('interestsPlaceholder')) {
+        interestsInput.textContent = '';
+        interestsInput.classList.remove('interestsPlaceholder');
     }
 });
 // remove placeholder
-interestsDiv.addEventListener('blur', function() {
-    if (interestsDiv.textContent.trim() === '') {
-        interestsDiv.textContent = 'Enter your interests...';
-        interestsDiv.classList.add('interestsPlaceholder');
+interestsInput.addEventListener('blur', function() {
+    if (interestsInput.textContent.trim() === '') {
+        interestsInput.textContent = 'Enter your interests...';
+        interestsInput.classList.add('interestsPlaceholder');
     }
 });
 // listener when user hits enter
-interestsDiv.addEventListener('keydown', function(event) {
+interestsInput.addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
         event.preventDefault();
-        var tagText = interestsDiv.textContent.trim();
-        if (tagText !== '') {
-            createTag(tagText);
-            interestsDiv.textContent = ''; 
+        var input = interestsInput.textContent.trim();
+        if (input !== '') {
+            interestsInput.textContent = ''; 
+            createTag(input); 
         }
     }
 });
+*/
 // create interests tag
-// FIXME: tags not appearing inside div
-function createTag(text) {
+function createTag(input) {
+    interestsInput.value = "";
     var interestTag = document.createElement('span');
+    interestTag.textContent = input;
     interestTag.classList.add('interestTag');
-    interestTag.textContent = text;
-    interestsDiv.parentNode.insertBefore(interestTag, interestsDiv);
+    interestsDiv.appendChild(interestTag);
 }
