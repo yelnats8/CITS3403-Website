@@ -3,38 +3,34 @@ var interestsDiv = document.getElementById("interestsDiv");
 var interestsInput = document.getElementById("interestsInput");
 
 // INTERESTS INPUT
-// add placeholder
-/*
-interestsInput.addEventListener('focus', function() {
-    if (interestsInput.classList.contains('interestsPlaceholder')) {
-        interestsInput.textContent = '';
-        interestsInput.classList.remove('interestsPlaceholder');
-    }
+const tagsArray = [];
+interestsDiv.addEventListener('click', function() {
+    interestsInput.focus();
 });
-// remove placeholder
-interestsInput.addEventListener('blur', function() {
-    if (interestsInput.textContent.trim() === '') {
-        interestsInput.textContent = 'Enter your interests...';
-        interestsInput.classList.add('interestsPlaceholder');
-    }
-});
-// listener when user hits enter
-interestsInput.addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-        event.preventDefault();
-        var input = interestsInput.textContent.trim();
-        if (input !== '') {
-            interestsInput.textContent = ''; 
-            createTag(input); 
-        }
-    }
-});
-*/
 // create interests tag
 function createTag(input) {
     interestsInput.value = "";
-    var interestTag = document.createElement('span');
-    interestTag.textContent = input;
-    interestTag.classList.add('interestTag');
-    interestsTagsDiv.appendChild(interestTag);
+    input = input.trim();
+    var tagId = input.replace(/\s+/g,"_").replace(/[^\w-]/g,""); // remove bad characters
+    tagId = "tag." + tagId;
+    if (!tagsArray.includes(tagId) && input != "") {
+        var interestTag = document.createElement('span');
+        interestTag.textContent = input;
+        interestTag.classList.add('interestTag');
+        interestTag.id = tagId;
+        tagsArray.push(interestTag.id);
+        interestTag.setAttribute("onclick", "removeTag('" + interestTag.id + "')");
+        interestsInput.placeholder = "";
+        interestsTagsDiv.appendChild(interestTag);
+    }
+}
+// remove interests tag
+function removeTag(tag) {
+    var toDelete = document.getElementById(tag);
+    toDelete.remove();
+    var i = tagsArray.indexOf(tag);
+    tagsArray.splice(i, 1);
+    if (tagsArray.length === 0) {
+        interestsInput.placeholder = "Enter your interests..."
+    }
 }
