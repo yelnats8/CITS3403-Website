@@ -36,5 +36,5 @@ function createTag(input) {
     var interestTag = document.createElement('span');
     interestTag.textContent = input;
     interestTag.classList.add('interestTag');
-    interestsDiv.appendChild(interestTag);
+    interestsTagsDiv.appendChild(interestTag);
 }
