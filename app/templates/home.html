@@ -18,34 +18,32 @@
         </button>
     </form>
 </div>
-<!-- unsure where to put this yet -->
-<input type="text" placeholder="Room Code" name="roomCode" value="{{roomCode}}">
 <br> 
-<form class="checkboxes">
-    <input id="inCollegeCheckbox" type="checkbox">
-    <label for="inCollegeCheckbox">Find students in my college</label>
-    <br>
-    <input id="anonymousCheckbox" type="checkbox"> 
-    <label for="anonymousCheckbox">I want to be anonymous</label>
-</form>
-<p>Alternatively, you can discuss a randomly generated question:</p>
+<nobr>
+    <form class="checkboxes">
+        <input id="inCollegeCheckbox" type="checkbox">
+        <label for="inCollegeCheckbox">Find students in my college</label>
+        <br>
+        <input id="anonymousCheckbox" type="checkbox"> 
+        <label for="anonymousCheckbox">I want to be anonymous</label>
+    </form>
+    <p>Alternatively, you can discuss a randomly generated question:</p>
+</nobr>
 <button type="submit" id="StartNewQuestionsModeBtn" class="startchatbtn">Discuss a question</button>
 {% else %} <!-- user is not logged in -->
 <!-- not logged in code will add after fixing above -->
 {% endif %}
-<script src="{{ url_for('static',filename='home.js') }}"></script>
 
-<!-- 
-    <form action = "" method="post" class="chat">
-    <h3>Feel like chatting?</h3>
-    
+<!-- my above coes does not work like the code below, may fix later -->
+<br>
+<form action = "" method="post" class="chat">
     <div class="join">
         <input type="text" placeholder="Room Code" name="roomCode" value="{{roomCode}}" />
         <button type="submit" name="join">Join a Room</button>
     </div>
+    <button type="submit" name="create" class ="create-btn">Create a Room</button>
+</form>
 
-    <button type="submit" name="create" class = "create-btn">Create a Room</button>
-    </form>
--->
 
+<script src="{{ url_for('static',filename='home.js') }}"></script>
 {% endblock %}
