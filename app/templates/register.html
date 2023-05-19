@@ -1,32 +1,33 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Register</h1>
-<form action="" method="post" novalidate>
+<h2>Register</h2>
+<span id="errortext">
+    {% for error in form.username.errors %}
+    {{ error }}
+    {% endfor %}
+    <!-- this part is redundant
+    {% for error in form.password.errors %}
+    {{ error }}
+    {% endfor %}
+    {% for error in form.confirm_password.errors %}
+    {{ error }}
+    {% endfor %}
+    -->
+</span>
+<form id="registerForm" action="" method="post" novalidate onsubmit="checkRegister();">
     {{ form.hidden_tag() }}
-    <p>
-        {{ form.username.label }}<br>
-        {{ form.username(size=32) }}<br>
-        {% for error in form.username.errors %}
-        <span style="color: red;">[{{ error }}]</span>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.password.label }}<br>
-        {{ form.password(size=32) }}<br>
-        {% for error in form.password.errors %}
-        <span style="color: red;">[{{ error }}]</span>
-        {% endfor %}
-    </p>
-
-    <p>         
-        {{ form.confirm_password.label }}<br>
-        {{ form.confirm_password(size=32) }}<br>
-        {% for error in form.confirm_password.errors %}
-        <span style="color: red;">[{{ error }}]</span>
-        {% endfor %}
-    </p>
-
-    <p>{{ form.submit() }}</p>
+    <p class="inputLabel">{{ form.username.label}}</p>
+    {{ form.username(class_="inputFields")}}
+    
+    <p class="inputLabel">{{ form.password.label}}</p>
+    {{ form.password(class_="inputFields")}}
+    
+    <p class="inputLabel">{{ form.confirm_password.label}}</p>
+    {{ form.confirm_password(class_="inputFields")}}
+    
+    <div style="height: 23px;"></div>
+    <button class="submitbtn" type="submit">Register</button>
 </form>
+<script src="{{ url_for('static',filename='register.js') }}"></script>
 {% endblock %}
