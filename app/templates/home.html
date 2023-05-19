@@ -2,4 +2,19 @@
 
 {% block content %}
     <h1>Hi, {{ current_user.username }}!</h1>
+
+
+    <!--This is to join chat rooms -->
+    <form action = "" method="post" class="chat">
+    <h3>Feel like chatting?</h3>
+    
+    <div class="join">
+        <input type="text" placeholder="Room Code" name="roomCode" value="{{roomCode}}" />
+        <button type="submit" name="join">Join a Room</button>
+    </div>
+
+    <button type="submit" name="create" class = "create-btn">Create a Room</button>
+    </form>
+    <!-- This is the chat function javascript -->
+
 {% endblock %}

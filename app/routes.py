@@ -1,14 +1,72 @@
-from flask import render_template, flash, redirect, url_for, request
-from app import app, db
-from app.forms import LoginForm, RegisterForm, ResetPassForm, EditProfileForm
-from app.models import User
+from flask import render_template, flash, redirect, url_for, request, session
+from app import app, db, socketio
+from app.forms import LoginForm, RegisterForm, ResetPassForm
+from app.models import User, ChatHistory
 from flask_login import current_user, login_user, logout_user, login_required
 from datetime import datetime
+import random
+from string import ascii_uppercase
 
-@app.route('/')
-@app.route('/home')
+rooms = {} #This is a dictionary to keep track of all the chat rooms we have currently, we should implement this into a database at some point
+
+#this function generates a 4 letters that acts as a unique room code
+def generate_unique_code(length):
+    while True:
+        code = ""
+        for _ in range(length):
+            code += random.choice(ascii_uppercase)
+        if code not in rooms:
+            break
+    return code
+
+
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/home', methods=['GET', 'POST'])
 def home():
+    if request.method == "POST":
+
+        if current_user.is_authenticated:
+            name = current_user.username
+            code = request.form.get("roomCode")
+
+            join = request.form.get("join", False)
+            create = request.form.get("create", False)
+
+            if join != False:
+                if not code:
+                    flash('Please enter a room code')
+                    return render_template('home.html', title = 'Home')
+                elif code not in rooms:
+                    flash('Room ' +code+ ' does not exist')
+                    return render_template('home.html', title = 'Home')
+                session["room"] = code
+                return redirect(url_for('chat'))
+                
+
+            room = code
+            if create != False:
+                room = generate_unique_code(4)
+                rooms[room] = {"members": 0, "messages": [], "usernames": []}
+
+                session["room"] = room
+                return redirect(url_for('chat'))
+            
+
+        else:
+            flash('Please log in')
+            return render_template('home.html', title = 'Home')
+
     return render_template('home.html', title = 'Home')
+
+@app.route('/chat')
+def chat():
+    code = session.get("room")
+    """
+    if room is None or room not in rooms:
+        return redirect(url_for("home"))
+    """
+    history = ChatHistory.query.filter_by(room_code = code)
+    return render_template("chat.html", history = history)
 
 
 @app.route('/logout')
