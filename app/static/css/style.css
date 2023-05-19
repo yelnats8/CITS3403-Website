@@ -134,7 +134,7 @@ button.disabled,button.disabled:hover,button.disabled:active {
 .interestsPlaceholder {
     color: #999999;
 }
-.checkboxes {
+form.checkboxes {
     line-height: 20pt;
 }
 #errortext {
