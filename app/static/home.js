@@ -24,7 +24,7 @@ interestsInput.addEventListener('keydown', function() {
     if (event.keyCode == 8) {
         this.style.width = this.value.length + "ch";
     }
-    if (interestsInput.value == "") {
+    if (interestsInput.value == "" && tagsArray.length == 0) {
         this.style.width = "initial";
     }
 });
