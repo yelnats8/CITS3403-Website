@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect, url_for, request, session
 from app import app, db, socketio
-from app.forms import LoginForm, RegisterForm, ResetPassForm
+from app.forms import LoginForm, RegisterForm, ResetPassForm, EditProfileForm
 from app.models import User, ChatHistory
 from flask_login import current_user, login_user, logout_user, login_required
 from datetime import datetime
