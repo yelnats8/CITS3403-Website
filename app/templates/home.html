@@ -13,7 +13,7 @@
 <div id="interestsDiv">
     <form input type="text">
         <div id="interestsTagsDiv"></div>
-        <input type="text" id="interestsInput" placeholder="Enter your interests...">
+        <input type="text" id="interestsInput" placeholder="Enter your interests..." maxlength="50">
         <button 
         id="interestsbtn" onclick="createTag(document.getElementById('interestsInput').value); return false;">
             invisiblebtn
@@ -22,9 +22,11 @@
 </div>
 <br> 
 <form class="checkboxes">
-    <input id="inCollegeCheckbox" type="checkbox"> Find students in my college
+    <input id="inCollegeCheckbox" type="checkbox">
+    <label for="inCollegeCheckbox">Find students in my college</label>
     <br>
-    <input id="anonymousCheckbox" type="checkbox"> I want to be anonymous
+    <input id="anonymousCheckbox" type="checkbox"> 
+    <label for="anonymousCheckbox">I want to be anonymous</label>
 </form>
 <p>Alternatively, you can discuss a randomly generated question:</p>
 <button id="StartNewQuestionsModeBtn" class="startchatbtn">Discuss a question</button>
@@ -38,7 +40,7 @@
 <div id="interestsDiv">
     <form input type="text">
         <div id="interestsTagsDiv"></div>
-        <input type="text" id="interestsInput" placeholder="Enter your interests...">
+        <input type="text" id="interestsInput" placeholder="Enter your interests..." maxlength="50">
         <button 
         id="interestsbtn" onclick="createTag(document.getElementById('interestsInput').value); return false;">
             invisiblebtn
@@ -47,9 +49,11 @@
 </div>
 <br> 
 <form class="checkboxes">
-    <input disabled id="inCollegeCheckbox" type="checkbox"> Find students in my college
+    <input disabled id="inCollegeCheckbox" type="checkbox"> 
+    <label for="inCollegeCheckbox">Find students in my college</label>
     <br>
-    <input disabled id="anonymousCheckbox" type="checkbox"> I want to be anonymous
+    <input disabled id="anonymousCheckbox" type="checkbox">
+    <label for="anonymousCheckbox">I want to be anonymous</label>
 </form>
 <p>No you have to be signed in to click this button.</p>
 <button disabled class="startchatbtn disabled">Discuss a question</button>
