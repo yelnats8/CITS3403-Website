@@ -17,12 +17,15 @@ Stanley - 22915411
 
 #### **(7/05/2023)**
 - Stanley has finally finished at least a functional yet super fragile chat. You can create and join chat rooms from the home page. Creating a chat room will automatically generate you a 4 letter room code where you can join. To join a chat room, just input the room code.
-    - chat as of now is super fragile, you can break it by putting in a room code that doesn't exist
+    - ~~chat as of now is super fragile, you can break it by putting in a room code that doesn't exist~~
     - You have to be logged in to enter chat rooms, otherwise it will break
-    - If you join the room at a later date, you won't see messages from before you joined the room
-    - chat log isn't really saved anywhere at the moment
+    - ~~If you join the room at a later date, you won't see messages from before you joined the room~~
+    - ~~chat log isn't really saved anywhere at the moment~~
 
 - Stanley renamed app.py to main.py
+
+#### **(19/05/2023)**
+- Chat function now has its own database and can load previous chats when you join the room. However the formatting is a bit  
 
 ## Pip Installs
 - pip install flask
@@ -43,4 +46,5 @@ Most of these steps are followig the [mega tutorial](https://blog.miguelgrinberg
     1. `flask db init`
     2. `flask db migrate -m "users table"`
     3. `flask db upgrade`
-4. ~~Run with `flask run`~~ Run with `python main.py` (This is because running with `flask run` for some reason gives a warning about WebSockets although I havent run into any problems with it yet. This is just to be safe)
+4. ~~Run with `flask run`~~ Run with `python main.py` (This is because running with `flask run` for some reason gives a warning about WebSockets although I havent run into any problems with it yet. This is just to be safe).
+    - Chat ceases to work if you use `flask run` instead of `python main.py`

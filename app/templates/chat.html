@@ -26,6 +26,13 @@
         $('#chat').scrollTop($('#chat')[0].scrollHeight);
     });
 
+    socketio.on('load_chats', function(data) {
+        for (let i = 0; i < data.length; i++){
+            $('#chat').val($('#chat').val() + data[i] + '\n');
+        }
+        $('#chat').scrollTop($('#chat')[0].scrollHeight);
+    })
+
     socketio.on('message', function(data) {
         $('#chat').val($('#chat').val() + data.msg + '\n');
         $('#chat').scrollTop($('#chat')[0].scrollHeight);
@@ -79,8 +86,12 @@
 </script>
 
 <body>
-    <h1>Flask SocketIO Chat From the Lectures, room code {{roomCode}}</h1>
-    <textarea id="chat" cols="80" rows ="20"></textarea><br><br>
+    <h1>Flask SocketIO Chat From the Lectures, room code {{session.room}}</h1>
+    <textarea id="chat" cols="80" rows ="20">
+        {% for msg in history %}
+            {{msg.message}}
+        {% endfor %}
+    </textarea><br><br>
     <input id="text" size="80" placeholder="Enter your message here"><br><br>
     <a href="/home" onclick="leave_room();">Leave this room</a>
 </body>
