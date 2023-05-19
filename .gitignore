@@ -1,0 +1,6 @@
+**/__pycache__
+migrations/
+app.db
+
+#This is to ignore the virtual environment
+venv/
