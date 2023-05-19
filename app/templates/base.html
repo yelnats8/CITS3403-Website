@@ -36,15 +36,20 @@
             &nbsp; &nbsp;
             {% endif %} 
         </header>
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        <ul>
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-        {% endwith %}
-        {% block content %}{% endblock %}
+        <div class="whitebox content">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+            <!-- all content goes here -->
+            {% block content %}{% endblock %}
+            <br> <br>
+        </div>
+    <script src="{{ url_for('static',filename='script.js') }}"></script>
     </body>
 </html>
