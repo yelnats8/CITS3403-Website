@@ -17,6 +17,10 @@ interestsInput.addEventListener('input', function() {
     }
 });
 interestsInput.addEventListener('keydown', function() {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        createTag(this.value);
+    }
     if (event.keyCode == 8) {
         this.style.width = this.value.length + "ch";
     }
