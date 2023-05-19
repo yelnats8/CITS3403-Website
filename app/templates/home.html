@@ -1,32 +1,31 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% if current_user.is_anonymous == false %} <!-- if the user is logged in, unsure correct syntax -->
-<nobr>
-<h3>Welcome to {{ title }}!</h3>
-<p>Hi {{ current_user.username }}! Join a chat room or start a new room 😁</p>
-</nobr>
+{% if current_user.is_anonymous == false %} <!-- if the user is logged in -->
 <form action = "" method="post" class="chatform">
-<div class="joinDiv">
-    <input type="text" placeholder="Room Code" id="roomCode" name="roomCode" value="{{roomCode}}"> &nbsp;
-    <button type="submit" id="joinChatBtn" class="startchatbtn" name="join">Join a room</button>
-</div>
-<button type="submit" id="startNewChatBtn" class="startchatbtn" name="create">Start a new chat room</button>
-<br>
-<div id="interestsDiv">
-    <div style="margin: 0;">
-        <div id="interestsTagsDiv"></div>
-        <input type="text" id="interestsInput" placeholder="Enter your interests..." maxlength="50">
-        <!--
-        <button 
-        id="interestsbtn" onclick="createTag(document.getElementById('interestsInput').value); return false;">
-            invisiblebtn
-        </button>
-        -->
+    <nobr>
+        <h3>Welcome to {{ title }}!</h3>
+        <p>Hi {{ current_user.username }}! Join a chat room or start a new room 😁</p>
+    </nobr>
+    <div class="joinDiv">
+        <input type="text" placeholder="Room Code" id="roomCode" name="roomCode" value="{{roomCode}}"> &nbsp;
+        <button type="submit" id="joinChatBtn" class="startchatbtn" name="join">Join a room</button>
     </div>
-</div>
-<br> 
-<nobr>
+    <button type="submit" id="startNewChatBtn" class="startchatbtn" name="create">Start a new chat room</button>
+    <br>
+    <div id="interestsDiv">
+        <div style="margin: 0;">
+            <div id="interestsTagsDiv"></div>
+            <input type="text" id="interestsInput" placeholder="Enter your interests..." maxlength="50">
+            <!--
+            <button 
+            id="interestsbtn" onclick="createTag(document.getElementById('interestsInput').value); return false;">
+                invisiblebtn
+            </button>
+            -->
+        </div>
+    </div>
+    <br> 
     <div class="checkboxes">
         <input id="inCollegeCheckbox" type="checkbox">
         <label for="inCollegeCheckbox">Find students in my college</label>
@@ -34,14 +33,14 @@
         <input id="anonymousCheckbox" type="checkbox"> 
         <label for="anonymousCheckbox">I want to be anonymous</label>
     </div>
-    <p>Alternatively, you can discuss a randomly generated question:</p>
-</nobr>
-<button type="submit" id="StartNewQuestionsModeBtn" class="startchatbtn">Discuss a question</button>
+    <nobr>
+        <p>Alternatively, you can discuss a randomly generated question:</p>
+    </nobr>
+    <button type="submit" id="StartNewQuestionsModeBtn" class="startchatbtn">Discuss a question</button>
 </form>
 {% else %} <!-- user is not logged in -->
 <!-- not logged in code will add after fixing above -->
 {% endif %}
-
 <!-- 
 <br>
 <form action = "" method="post" class="chat">
@@ -52,7 +51,5 @@
     <button type="submit" name="create" class ="create-btn">Create a Room</button>
 </form>
 -->
-
-
 <script src="{{ url_for('static',filename='home.js') }}"></script>
 {% endblock %}
