@@ -114,10 +114,13 @@ button.disabled,button.disabled:hover,button.disabled:active {
 #interestsInput,#interestsInput:focus {
     display: inline;
     width: fit-content;
+    height: max-content;
+    padding: 1px;
     border: none;
     outline-width: 0;
     text-align: left;
     font-family: 'Gill Sans MT';
+    background: none;
 }
 #interestsbtn {
     display: none;
@@ -130,9 +133,6 @@ button.disabled,button.disabled:hover,button.disabled:active {
     background-color: pink;
     border-radius: 2px;
     font-size: small;
-}
-.interestsPlaceholder {
-    color: #999999;
 }
 form.checkboxes {
     line-height: 20pt;
