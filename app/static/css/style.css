@@ -71,7 +71,7 @@ button.submitbtn:active {
 }
 button.startchatbtn { /* start chat */
     padding: 10px;
-    width: 51%;
+    width: 100%;
     border-radius: 5pt;
     color: #435a61;            
     background-color: #a4e1f5;
@@ -97,7 +97,7 @@ button.disabled,button.disabled:hover,button.disabled:active {
 .inputFields {
     width: 230px;
 }
-.chatform { /* not in use */
+.chatform {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -106,6 +106,7 @@ button.disabled,button.disabled:hover,button.disabled:active {
 }
 .joinDiv {
     display: flex;
+    width: 100%;
     margin-bottom: 5pt;
     justify-content: center;
 }
@@ -116,7 +117,7 @@ button.disabled,button.disabled:hover,button.disabled:active {
     font-family: 'Gill Sans MT';
 }
 #interestsDiv {
-    width: 50%;
+    width: 100%;
     height: max-content;
     border: 1px solid #cccccc;
     border-radius: 2pt;

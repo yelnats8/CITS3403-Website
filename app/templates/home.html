@@ -6,11 +6,12 @@
 <h3>Welcome to {{ title }}!</h3>
 <p>Hi {{ current_user.username }}! Join a chat room or start a new room 😁</p>
 </nobr>
+<form action = "" method="post" class="chatform">
 <div class="joinDiv">
     <input type="text" placeholder="Room Code" id="roomCode" name="roomCode" value="{{roomCode}}"> &nbsp;
-    <button type="submit" id="joinChatBtn" class="startchatbtn">Join a room</button>
+    <button type="submit" id="joinChatBtn" class="startchatbtn" name="join">Join a room</button>
 </div>
-<button type="submit" id="startNewChatBtn" class="startchatbtn">Start a new chat room</button>
+<button type="submit" id="startNewChatBtn" class="startchatbtn" name="create">Start a new chat room</button>
 <br>
 <div id="interestsDiv">
     <div style="margin: 0;">
@@ -34,11 +35,12 @@
     <p>Alternatively, you can discuss a randomly generated question:</p>
 </nobr>
 <button type="submit" id="StartNewQuestionsModeBtn" class="startchatbtn">Discuss a question</button>
+</form>
 {% else %} <!-- user is not logged in -->
 <!-- not logged in code will add after fixing above -->
 {% endif %}
 
-<!-- my above coes does not work like the code below, may fix later -->
+<!-- 
 <br>
 <form action = "" method="post" class="chat">
     <div class="join">
@@ -47,6 +49,7 @@
     </div>
     <button type="submit" name="create" class ="create-btn">Create a Room</button>
 </form>
+-->
 
 
 <script src="{{ url_for('static',filename='home.js') }}"></script>
