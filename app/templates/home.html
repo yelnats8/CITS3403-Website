@@ -1,10 +1,41 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Hi, {{ current_user.username }}!</h1>
+{% if current_user.is_anonymous == false %} <!-- if the user is logged in, unsure correct syntax -->
+<nobr>
+<h3>Welcome to {{ title }}!</h3>
+<p>Hi {{ current_user.username }}! Start a new chat 👀</p>
+</nobr>
+<button type="submit" id="startNewChatBtn" class="startchatbtn">Start a new chat</button>
+<br>
+<div id="interestsDiv">
+    <form input type="text">
+        <div id="interestsTagsDiv"></div>
+        <input type="text" id="interestsInput" placeholder="Enter your interests..." maxlength="50">
+        <button 
+        id="interestsbtn" onclick="createTag(document.getElementById('interestsInput').value); return false;">
+            invisiblebtn
+        </button>
+    </form>
+</div>
+<!-- unsure where to put this yet -->
+<input type="text" placeholder="Room Code" name="roomCode" value="{{roomCode}}">
+<br> 
+<form class="checkboxes">
+    <input id="inCollegeCheckbox" type="checkbox">
+    <label for="inCollegeCheckbox">Find students in my college</label>
+    <br>
+    <input id="anonymousCheckbox" type="checkbox"> 
+    <label for="anonymousCheckbox">I want to be anonymous</label>
+</form>
+<p>Alternatively, you can discuss a randomly generated question:</p>
+<button type="submit" id="StartNewQuestionsModeBtn" class="startchatbtn">Discuss a question</button>
+{% else %} <!-- user is not logged in -->
+<!-- not logged in code will add after fixing above -->
+{% endif %}
+<script src="{{ url_for('static',filename='home.js') }}"></script>
 
-
-    <!--This is to join chat rooms -->
+<!-- 
     <form action = "" method="post" class="chat">
     <h3>Feel like chatting?</h3>
     
@@ -15,6 +46,6 @@
 
     <button type="submit" name="create" class = "create-btn">Create a Room</button>
     </form>
-    <!-- This is the chat function javascript -->
+-->
 
 {% endblock %}
