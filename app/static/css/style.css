@@ -97,6 +97,24 @@ button.disabled,button.disabled:hover,button.disabled:active {
 .inputFields {
     width: 230px;
 }
+.chatform { /* not in use */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+.joinDiv {
+    display: flex;
+    margin-bottom: 5pt;
+    justify-content: center;
+}
+#roomCode,#roomCode:focus {
+    border: 1px solid #cccccc;
+    border-radius: 5pt;
+    outline-width: 0;
+    font-family: 'Gill Sans MT';
+}
 #interestsDiv {
     width: 50%;
     height: max-content;
@@ -104,7 +122,7 @@ button.disabled,button.disabled:hover,button.disabled:active {
     border-radius: 2pt;
     padding: 2px;
     text-align: left;
-    align-items: center;
+    align-items: left;
     font-family: 'Gill Sans MT';
 }
 #interestsTagsDiv {
@@ -119,6 +137,7 @@ button.disabled,button.disabled:hover,button.disabled:active {
     border: none;
     outline-width: 0;
     text-align: left;
+    align-self: left;
     font-family: 'Gill Sans MT';
     background: none;
 }
@@ -134,7 +153,7 @@ button.disabled,button.disabled:hover,button.disabled:active {
     border-radius: 2px;
     font-size: small;
 }
-form.checkboxes {
+.checkboxes {
     line-height: 20pt;
 }
 #errortext {
@@ -198,12 +217,6 @@ form.checkboxes {
     align-items: center;
     justify-content: center;
     gap: 10px;
-}
-
-.join {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
 }
 
 .create-btn {
