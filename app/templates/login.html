@@ -2,7 +2,11 @@
 
 {% block content %}
 <h2>Sign In</h2>
-<span id="errortext"></span>
+<span id="errortext">
+    {% for error in form.username.errors %}
+    {{ error }}
+    {% endfor %}
+</span>
 <form id="loginForm" action="" method="post" novalidate onsubmit="checkLogin();">
     {{ form.hidden_tag() }}
     <p class="inputLabel">{{ form.username.label}}</p>
