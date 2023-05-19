@@ -99,6 +99,7 @@ button.disabled,button.disabled:hover,button.disabled:active {
 }
 .chatform {
     display: flex;
+    width: 60%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
