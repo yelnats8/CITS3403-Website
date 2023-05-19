@@ -2,11 +2,11 @@ from flask import render_template, flash, redirect, url_for, request, session
 from app import app, db, socketio
 from app.forms import LoginForm, RegisterForm, ResetPassForm
 from app.models import User
-from flask_login import current_user, login_user, logout_user
-
-
+from flask_login import current_user, login_user, logout_user, login_required
+from datetime import datetime
 import random
 from string import ascii_uppercase
+
 rooms = {} #This is a dictionary to keep track of all the chat rooms we have currently, we should implement this into a database at some point
 
 def generate_unique_code(length):
@@ -17,6 +17,7 @@ def generate_unique_code(length):
         if code not in rooms:
             break
     return code
+
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/home', methods=['GET', 'POST'])
@@ -120,3 +121,18 @@ def reset():
     
     return render_template('reset.html', title ='Register', form=form)
 
+@app.route('/user/<username>')  #Following tutorial 
+@login_required
+def user(username):
+    user = User.query.filter_by(username=username).first_or_404()
+    posts = [
+        {'author': user, 'body': 'Test post #1'},
+        {'author': user, 'body' : 'Test post #2'}
+    ]
+    return render_template('user.html',user=user,posts=posts)
+
+@app.before_request
+def before_request():
+    if current_user.is_authenticated:
+        current_user.last_seen = datetime.utcnow()
+        db.session.commit()

@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
-from wtforms.validators import DataRequired, EqualTo, ValidationError
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
+from wtforms.validators import DataRequired, EqualTo, ValidationError, Length
 from app.models import User
 
 class LoginForm(FlaskForm):
@@ -31,3 +31,8 @@ class ResetPassForm(FlaskForm):
         user = User.query.filter_by(username=username.data).first()
         if user is None:
             raise ValidationError("Username doesn't exist")
+        
+class EditProfileForm(FlaskForm):
+    username = StringField ('Username', validators=[DataRequired()])
+    about_me = TextAreaField('About me', validators=[Length(min=0,max=140)])
+    submit = SubmitField('Submit')
