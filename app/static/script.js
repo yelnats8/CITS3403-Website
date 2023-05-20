@@ -11,8 +11,6 @@ var startchatbtns = document.getElementsByClassName("startchatbtn");
 var p1 = document.getElementById("p1");
 var p2 = document.getElementById("p2");
 
-checkDevice();
-
 // IF USER IS NOT SIGNED IN
 function disableHome() {
     p1.innerHTML = "Please sign in or register to begin a chat.";
@@ -24,6 +22,7 @@ function disableHome() {
 }
 
 // RESPONSIVITY FOR DEVICE TYPE
+checkDevice();
 function checkDevice() {
     var isMobile = false;
     var device = "";
@@ -33,20 +32,7 @@ function checkDevice() {
     }
     if (isMobile) {
         device = "mobile";
-        // make header and header items bigger
-        header[0].classList.add('headerMobile');
-        h1[0].classList.add('h1Mobile');
-        for (var i = 0; i < headerbtn.length; i++) {
-            // headerbtn[i].setAttribute('data-index', i); // debug
-            // console.log('Element at index', i, headerbtn[i]); // debug
-            headerbtn[i].classList.add('headerbtnMobile');           
-        }
-        // make content div fit whole screen
-        for (var i = 0; i < content.length; i++) {
-            content[i].classList.add('whiteboxMobile');
-            content[i].classList.add('contentMobile');   
-            content[i].classList.remove('content');          
-        }
+        // check the screen res here, then call resizeForMobile()
     } 
     else {
         device = "computer";
@@ -62,3 +48,20 @@ window.onresize = function(event) {
         device == "mobile";
     }
 };
+
+function resizeForMobile() {
+    // make header and header items bigger
+    header[0].classList.add('headerMobile');
+    h1[0].classList.add('h1Mobile');
+    for (var i = 0; i < headerbtn.length; i++) {
+        // headerbtn[i].setAttribute('data-index', i); // debug
+        // console.log('Element at index', i, headerbtn[i]); // debug
+        headerbtn[i].classList.add('headerbtnMobile');           
+    }
+    // make content div fit whole screen
+    for (var i = 0; i < content.length; i++) {
+        content[i].classList.add('whiteboxMobile');
+        content[i].classList.add('contentMobile');   
+        content[i].classList.remove('content');          
+    }
+}
