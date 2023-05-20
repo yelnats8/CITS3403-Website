@@ -9,14 +9,23 @@ interestsDiv.addEventListener('click', function() {
 });
 // dynamically adjust input size
 interestsInput.addEventListener('input', function() {
-    this.style.width = this.value.length + "ch";
+    interestsInput.value = interestsInput.value.toLowerCase();
+    this.style.width = ((this.value.length + 1) * 8) + 'px';
+    // this.style.width = this.value.length + "ch";
+    if (interestsInput.value == "") {
+        this.style.width = "initial";
+    }
 });
 interestsInput.addEventListener('keydown', function() {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        createTag(this.value);
+    }
     if (event.keyCode == 8) {
         this.style.width = this.value.length + "ch";
-        if (interestsInput.value == "") {
-            this.style.width = "initial";
-        }
+    }
+    if (interestsInput.value == "" && tagsArray.length == 0) {
+        this.style.width = "initial";
     }
 });
 // create interests tag

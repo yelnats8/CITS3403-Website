@@ -1,34 +1,62 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>{{ title }}</title>
-    <!-- favicon, yet to be made -->
-    <link rel="icon" type="image/x-icon" href="">
-    <!-- stylesheet -->
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
-</head>
-<body>
-    <header>
-        <img src="" style="width: 20px; height: 20px;"> &nbsp; &nbsp;
-        <h1>Website Name</h1> &nbsp; &nbsp;
-        <a class="headerbtn" href="{{ url_for('home')}}">Home</a>
-        &nbsp; &nbsp;
-        {% if current_user.is_anonymous %}
-        <a class="headerbtn" href="{{ url_for('register')}}">Register</a>
-        &nbsp; &nbsp;
-        <a class="headerbtn" href="{{ url_for('login')}}">Login</a>
+    <head>
+        {% if title %}
+        <title>{{ title }} - OmegeLUL</title>
         {% else %}
-        <a class="headerbtn" href="{{url_for('user', username=current_user.username)}}">Profile</a>
-        &nbsp; &nbsp;
-        <a class="headerbtn" href="{{ url_for('logout')}}">Logout</a>
-        &nbsp; &nbsp;
-        {% endif %} 
-    </header>
-    <div class="whitebox content">
-        <!-- all content goes here -->
-        {% block content %}{% endblock %}
-        <br> <br>
-    </div>
+        <title>OmegeLUL</title>
+        {% endif %}
+        <!-- favicon -->
+        <link rel="icon" type="image/x-icon" href="{{url_for('static', filename='images/icon.png')}}">
+        <!-- stylesheet -->
+        <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" />
+        <!-- socket and jquery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+        <script type="text/javascript" charset="utf-8">
+            var socket = io();
+            socket.on('connect', function() {
+                socket.emit('my event', {data: 'I\'m connected!'});
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+            <img src="{{url_for('static', filename='images/icon.png')}}" 
+            style="width: 25px; height: 25px; border-radius: 3px;"> &nbsp;
+            <h1>OmegeLUL</h1> &nbsp; &nbsp;
+            <a class="headerbtn" href="{{ url_for('home')}}">Home</a>
+            &nbsp; &nbsp;
+            <a class="headerbtn" href="about, i broke the server">About</a>
+            &nbsp; &nbsp;
+            {% if current_user.is_anonymous %}
+            <a class="headerbtn" href="{{ url_for('register')}}">Register</a>
+            &nbsp; &nbsp;
+            <a class="headerbtn" href="{{ url_for('login')}}">Login</a>
+            {% else %}
+            <a class="headerbtn" href="{{url_for('user', username=current_user.username)}}">Profile</a>
+            &nbsp; &nbsp;
+            <a class="headerbtn" href="{{ url_for('logout')}}">Logout</a>
+            &nbsp; &nbsp;
+            {% endif %} 
+        </header>
+        <div class="whitebox content">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+            <!-- all content goes here -->
+            {% block content %}{% endblock %}
+            <br> <br>
+        </div>
     <script src="{{ url_for('static',filename='script.js') }}"></script>
-</body>
+    {% if current_user.is_anonymous %} <!-- if the user is not logged in -->
+    <script>disableHome();</script>
+    {% endif %}
+    </body>
 </html>
