@@ -138,6 +138,19 @@ def user(username):
     posts = user.posts.all()
     return render_template('user.html',user=user,posts=posts)
 
+@app.route('/user/<username>/post/<post_id>/delete', methods=['POST'])
+@login_required
+def delete_post(username, post_id):
+    user = User.query.filter_by(username=username).first_or_404()
+    post = Post.query.get(post_id)
+
+    if post and post.author == user:
+        db.session.delete(post)
+        db.session.commit()
+    return redirect(url_for('user', username=username))
+
+
+
 @app.before_request
 def before_request():
     if current_user.is_authenticated:
