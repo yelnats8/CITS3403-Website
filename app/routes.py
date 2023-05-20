@@ -8,6 +8,7 @@ import random
 from string import ascii_uppercase
 
 rooms = {} #This is a dictionary to keep track of all the chat rooms we have currently, we should implement this into a database at some point
+posts = [] #Empty list to store posts
 
 #this function generates a 4 letters that acts as a unique room code
 def generate_unique_code(length):
@@ -123,14 +124,20 @@ def reset():
     
     return render_template('reset.html', title ='Register', form=form)
 
-@app.route('/user/<username>')  #Following tutorial 
+@app.route('/user/<username>', methods=['GET', 'POST'])  #Following tutorial 
 @login_required
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
-    posts = [
-        {'author': user, 'body': 'Test post #1'},
-        {'author': user, 'body' : 'Test post #2'}
-    ]
+
+    if request.method == 'POST':
+        post_body = request.form['post_body']
+        new_post = {'author': user, 'body': post_body, 'timestamp' : datetime.utcnow()}
+        posts.append(new_post)
+
+ #   posts = [
+#        {'author': user, 'body': 'Test post #1'},
+ #       {'author': user, 'body' : 'Test post #2'}
+  #  ]
     return render_template('user.html',user=user,posts=posts)
 
 @app.before_request
