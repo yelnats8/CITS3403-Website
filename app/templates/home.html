@@ -1,11 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% if current_user.is_anonymous == false %} <!-- if the user is logged in -->
 <form action = "" method="post" class="chatform">
     <nobr>
         <h3>Welcome to OmegeLUL!</h3>
-        <p>Hi {{ current_user.username }}! Join a chat room or start a new room 😁</p>
+        <p id="p1">Hi {{ current_user.username }}! Join a chat room or start a new room 😁</p>
     </nobr>
     <div class="joinDiv">
         <input type="text" placeholder="Room Code" id="roomCode" name="roomCode" value="{{roomCode}}"> &nbsp;
@@ -35,13 +34,10 @@
     </div>
     -->
     <nobr>
-        <p>Alternatively, you can discuss a randomly generated question:</p>
+        <p id="p2">Alternatively, you can discuss a randomly generated question:</p>
     </nobr>
-    <button type="submit" id="StartNewQuestionsModeBtn" class="startchatbtn">Discuss a question</button>
+    <button type="submit" id="StartNewQuestionsModeBtn" class="startchatbtn" name="questionsMode">Discuss a question</button>
 </form>
-{% else %} <!-- user is not logged in -->
-<!-- not logged in code will add after fixing above -->
-{% endif %}
 <!-- 
 <br>
 <form action = "" method="post" class="chat">

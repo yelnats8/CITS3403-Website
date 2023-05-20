@@ -2,17 +2,26 @@
 var header = document.getElementsByTagName("header");
 var h1 = document.getElementsByTagName("h1");
 var headerbtn = document.getElementsByClassName("headerbtn");
-// div classes - arrays
+// div classes
 var whitebox = document.getElementsByClassName("whitebox");
 var content = document.getElementsByClassName("content");
 // buttons
-var startchatbuttons = document.getElementsByClassName("startchatbtn");
+var startchatbtns = document.getElementsByClassName("startchatbtn");
+// text
+var p1 = document.getElementById("p1");
+var p2 = document.getElementById("p2");
 
 checkDevice();
 
-// var userLoggedIn = false;
-// if (startchatbuttons.classname.includes("disabled")) {userLoggedIn = true;} 
-// ideally add an event listener to when user logs in or out
+// IF USER IS NOT SIGNED IN
+function disableHome() {
+    p1.innerHTML = "Please sign in or register to begin a chat.";
+    p2.innerHTML = "No you have to be signed in to click this button.";
+    for (var i = 0; i < startchatbtns.length; i++) {
+        startchatbtns[i] = startchatbtns[i].setAttribute("disabled",true);
+        startchatbtns[i].classList.add("disabled");
+    }
+}
 
 // RESPONSIVITY FOR DEVICE TYPE
 function checkDevice() {
