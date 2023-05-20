@@ -17,6 +17,8 @@ class User(UserMixin, db.Model):
     about_me = db.Column(db.String(140))
     last_seen = db.Column(db.DateTime, default=datetime.utcnow())
 
+    posts = db.relationship('Post', backref='author', lazy='dynamic')
+
     @property
     def last_seen_formatted(self):
          return self.last_seen.strftime('%Y-%m-%d %H:%M:%S')
@@ -39,3 +41,12 @@ class ChatHistory(db.Model):
     chat_id = db.Column(db.Integer, primary_key=True)
     room_code = db.Column(db.String(4))
     message = db.Column(db.String(500))
+
+class Post(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    body = db.Column(db.String(140))
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+    def __repr__(self):
+        return f"<Post(id={self.id}, body='{self.body}', timestamp={self.timestamp}, user_id={self.user_id})>"
