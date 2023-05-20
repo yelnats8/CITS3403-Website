@@ -1,5 +1,3 @@
-// <script type="text/javascript" charset="utf-8"></script>
-
 var socketio;
 $(document).ready(function(){
 socketio = io.connect('http://' + document.domain + ':' + location.port + '/chat');
