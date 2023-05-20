@@ -2,7 +2,7 @@
 
 {% block content %} 
     <div class="user-profile">
-        <img class="avatar" src="{{ url_for('static', filename= current_user.avatar_path) }}" width ="256" height ="256">
+        <img class="avatar" src="{{ user.avatar(100) }}" style="width: 256px; height: 256px;">  
         <div class="user-info">
             <h1>User: {{ user.username }}</h1>
             {% if user.about_me %}
@@ -20,7 +20,7 @@
     <div class="posts">
         {% for post in posts %}
             <div class="post">
-                <td><img class="avatar" src="{{ url_for('static', filename= current_user.avatar_path) }}" width = "40" height = "40"></td>
+                <img class="avatar" src="{{ user.avatar(100) }}" style="width: 50px; height: 50px;">
                 <td>{{ post.author.username }} says:  {{ post.body }} <br> 
                     <small> Posted on {{ post.timestamp.strftime('%Y-%m-%d %H:%M:%S') }} </small>
                 </td>
