@@ -1,3 +1,4 @@
+// FUNCTIONALITY - written by @yelnats8
 var socketio;
 $(document).ready(function(){
 socketio = io.connect('http://' + document.domain + ':' + location.port + '/chat');
@@ -31,7 +32,6 @@ function leave_room() {
         window.loaction.href = "{{ url_for('home') }}";
     });
 }
-
 /*
 const messages = document.getElementById("messages");
 const createMessage = (message) => {
@@ -48,12 +48,10 @@ const createMessage = (message) => {
     `;
     messages.innerHTML += content;
 };
-
 socketio.on("message"), (data) => {
     createMessage(data.msg);
     console.log("received msg from server");
 };
-
 const sendMessage = () => {
     const message = document.getElementById("message");
     if (message.value == "") return;
@@ -61,3 +59,11 @@ const sendMessage = () => {
     message.value = "";
 };
 */
+
+// DISPLAY
+var messageDiv = document.getElementsByClassName("messageDiv")[0];
+var messageField = document.getElementsByClassName("messageField")[0];
+
+messageDiv.addEventListener('click', function() {
+    messageField.focus();
+});

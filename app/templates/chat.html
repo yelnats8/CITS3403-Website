@@ -13,9 +13,14 @@
 -->
 
 <body>
-    <h1>Flask SocketIO Chat From the Lectures, room code {{roomCode}}</h1>
-    <textarea id="chat" cols="80" rows ="20"></textarea><br><br>
-    <input id="text" size="80" placeholder="Enter your message here"><br><br>
+    <h3>Flask SocketIO Chat From the Lectures, room code {{roomCode}}</h3>
+    <textarea class="whitebox chatarea" id="chat" cols="80" rows ="20" readonly></textarea><br>
+    <!-- <div class="whitebox chatbox" id="chat" ></div> <br><br> -->
+    <!-- <input id="text" size="80" placeholder="Enter your message here"><br><br> -->
+    <div class="messageDiv">
+        <input type="text" class="messageField" id="text" placeholder="Enter your message here...">
+    </div>
+    <br>
     <a href="/home" onclick="leave_room();">Leave this room</a>
 </body>
 

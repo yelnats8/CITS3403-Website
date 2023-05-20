@@ -162,6 +162,51 @@ button.disabled,button.disabled:hover,button.disabled:active {
     font-size: small;
     color: red;
 }
+/* CHAT PAGE */
+.chatbox { /* not in use */
+    width: 80%;
+    height: 80vh;
+    border-color: lightblue !important;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+.chatarea,.chatarea:focus {
+    width: 80%;
+    height: 80vh;
+    padding: 15px !important;
+    border-color: lightblue !important;
+    outline-width: 0;
+    resize: none;
+    flex-direction: column;
+    align-items: stretch;
+    /*
+    font-family: 'Gill Sans MT';
+    font-size: 90%;
+    */
+}
+.messageDiv {
+    width: 80%;
+    height: max-content;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border: 1px solid #cccccc;
+    border-radius: 2pt;
+    box-sizing: border-box;
+    text-align: left;
+}
+.messageField,.messageField:focus {
+    display: inline;
+    border: none;
+    margin: 0;
+    outline-width: 0;
+    text-align: left;
+    font-family: 'Gill Sans MT';
+    font-size: 90%;
+    background: none;
+}
 /* DISPLAY */
 .whitebox {
     padding: 20px;
