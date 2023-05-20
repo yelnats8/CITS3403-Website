@@ -24,6 +24,10 @@ Stanley - 22915411
 
 - Stanley renamed app.py to main.py
 
+#### **(19/05/2023)**
+- Emi has moved necessary files and content from emis_branch onto this branch.
+- emis_branch is no longer in use.
+
 ## Pip Installs
 - pip install flask
 - pip install flask-wtf
