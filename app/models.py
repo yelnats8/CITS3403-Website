@@ -29,4 +29,9 @@ class User(UserMixin, db.Model):
     def avatar(self, size):
          digest = md5(self.username.lower().encode('utf-8')).hexdigest()
          return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(
-            digest, size)    
+            digest, size)   
+    
+class ChatHistory(db.Model):
+    chat_id = db.Column(db.Integer, primary_key=True)
+    room_code = db.Column(db.String(4))
+    message = db.Column(db.String(500))
