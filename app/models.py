@@ -16,6 +16,7 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(128))
     about_me = db.Column(db.String(140))
     last_seen = db.Column(db.DateTime, default=datetime.utcnow())
+    avatar_path = db.Column(db.String(200))
 
     posts = db.relationship('Post', backref='author', lazy='dynamic')
 
@@ -33,9 +34,11 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
             return check_password_hash(self.password_hash, password)
     def avatar(self, size):
-         digest = md5(self.username.lower().encode('utf-8')).hexdigest()
-         return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(
-            digest, size)   
+         if self.avatar_path:
+              return self.avatar_path
+         else:
+            digest = md5(self.username.lower().encode('utf-8')).hexdigest()
+            return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(digest, size)   
     
 class ChatHistory(db.Model):
     chat_id = db.Column(db.Integer, primary_key=True)

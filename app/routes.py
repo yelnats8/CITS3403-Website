@@ -5,6 +5,8 @@ from app.models import User, ChatHistory, Post
 from flask_login import current_user, login_user, logout_user, login_required
 from datetime import datetime
 import random
+import os
+from werkzeug.utils import secure_filename
 from string import ascii_uppercase
 
 rooms = {} #This is a dictionary to keep track of all the chat rooms we have currently, we should implement this into a database at some point
@@ -161,9 +163,18 @@ def before_request():
 @login_required
 def edit_profile():
     form = EditProfileForm()
+
     if form.validate_on_submit():
         current_user.username = form.username.data
         current_user.about_me = form.about_me.data
+
+        if form.avatar.data:
+            file = form.avatar.data
+            filename = secure_filename(file.filename)
+            filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            file.save(filepath)
+            current_user.avatar_path = 'avatars/' + filename
+        
         db.session.commit()
        # flash ('Your changes have been saved.')
         return redirect(url_for('user', username=current_user.username))   #can change to edit_profile so pop up doesnt look ugly of saved changes. or just remove the flash
