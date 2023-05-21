@@ -179,7 +179,7 @@ def user(username):
             db.session.add(new_post)
             db.session.commit()
 
-    posts = Post.query.filter_by(profile_id=user.id).order_by(Post.timestamp.desc()).all()
+    posts = Post.query.filter_by(profile_id=user.id).order_by(Post.timestamp.asc()).all()
     return render_template('user.html',user=user,posts=posts)
 
 
