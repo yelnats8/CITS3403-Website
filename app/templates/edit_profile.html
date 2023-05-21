@@ -1,32 +1,52 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 
-{% block content %} 
-    <h1> Edit Profile </h1>
+{% block content %}
+    <h1>Edit Profile</h1>
     <form action="" method="post" enctype="multipart/form-data">
         {{ form.hidden_tag() }}
         <p>
             {{ form.username.label }}<br>
             {{ form.username(size=32) }}<br>
-            {% for error in form.username.errors %} 
-            <span style="color: red;">[{{ error }}]</span>
+            {% for error in form.username.errors %}
+                <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
-            {{ form.about_me.label }} <br>
-            {{ form.about_me(cols=50, rows=4 )}}<br>
-            {% for error in form.about_me.errors %} 
-            <span style="color: red;"> [{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.avatar.label }} <br>
-            {{ form.avatar() }} <br>
-            {% for error in form.avatar.errors %} 
+            {{ form.about_me.label }}<br>
+            {{ form.about_me(cols=50, rows=4) }}<br>
+            {% for error in form.about_me.errors %}
                 <span style="color: red;"> [{{ error }}]</span>
             {% endfor %}
         </p>
+        <p>
+            <div>
+                {{ form.avatar(class="avatar-input") }}<br>
+                <img id="avatar-preview" class="avatar-preview" src="" alt="Avatar Preview">
+            </div>
+            <script>
+                var avatarInput = document.querySelector('.avatar-input');
+                var avatarPreview = document.getElementById('avatar-preview');
 
+                avatarInput.addEventListener('change', function() {
+                    var file = avatarInput.files[0];
 
-        <p> {{ form.submit() }}</p>
+                    if (file) {
+                        var reader = new FileReader();
+
+                        reader.onload = function(e) {
+                            avatarPreview.src = e.target.result;
+                        }
+
+                        reader.readAsDataURL(file);
+                    } else {
+                        avatarPreview.src = '';
+                    }
+                });
+            </script>
+            {% for error in form.avatar.errors %}
+                <span style="color: red;"> [{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
     </form>
 {% endblock %}
