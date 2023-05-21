@@ -47,7 +47,9 @@
 {% else %} <!-- user is not logged in -->
 <nobr>
     <h3>Welcome to OmegeLUL!</h3>
-    <p class = "about">A lightweight flask-based chat application inspired by Omegle and the feature of random matchups! Register yourself, enter a random room and chat away!</p>
+    <p style="white-space: pre-line;">A lightweight flask-based chat application inspired by Omegle and the feature of random matchups! 
+        <a href="{{ url_for('register')}}">Register</a> yourself, enter a random room and chat away!</p>
+    <p style="white-space: pre-line;">Already have an account? <a href="{{ url_for('login')}}">Login</a> to start chatting 😃</p>
 </nobr>
 {% endif %}
 {% endblock %}
