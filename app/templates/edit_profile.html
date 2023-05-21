@@ -19,34 +19,33 @@
             {% endfor %}
         </p>
         <p>
-            <div>
-                {{ form.avatar(class="avatar-input") }}<br>
-                <img id="avatar-preview" class="avatar-preview" src="" alt="Avatar Preview">
-            </div>
-            <script>
-                var avatarInput = document.querySelector('.avatar-input');
-                var avatarPreview = document.getElementById('avatar-preview');
-
-                avatarInput.addEventListener('change', function() {
-                    var file = avatarInput.files[0];
-
-                    if (file) {
-                        var reader = new FileReader();
-
-                        reader.onload = function(e) {
-                            avatarPreview.src = e.target.result;
-                        }
-
-                        reader.readAsDataURL(file);
-                    } else {
-                        avatarPreview.src = '';
-                    }
-                });
-            </script>
-            {% for error in form.avatar.errors %}
-                <span style="color: red;"> [{{ error }}]</span>
-            {% endfor %}
+            {{ form.avatar.label }}<br>
+            <input type="file" id="avatar-input" name="{{ form.avatar.name }}" accept="image/*" onchange="previewAvatar(event)">
         </p>
-        <p>{{ form.submit() }}</p>
+        <div style="display: flex; justify-content: center;">
+            <div style="width: 134px; height: 134px; overflow: hidden; border: 2px solid black;">
+                <img id="avatar-preview" class="avatar-preview" src="" alt="Avatar Preview" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+        </div>
+        <script>
+            function previewAvatar(event) {
+                var input = event.target;
+                var preview = document.getElementById('avatar-preview');
+
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        preview.src = e.target.result;
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+        </script>
+        {% for error in form.avatar.errors %}
+            <p style="color: red;">[{{ error }}]</p>
+        {% endfor %}
+        <p style="display: flex; justify-content: center;">{{ form.submit() }}</p>
     </form>
 {% endblock %}
