@@ -9,14 +9,13 @@ socketio.on('connect', function() {
 
 socketio.on('status', function(data) {
     statusMessage(data);
-    $('#chat').scrollTop($('#chat')[0].scrollHeight);
+    $('.chatbox').scrollTop($('.chatbox')[0].scrollHeight);
 });
 
 socketio.on('message', function(data) {
     createMessage(data);
     console.log("received msg from server");
-    $('#chat').val($('#chat').val() + data.msg + '\n');
-    $('#chat').scrollTop($('#chat')[0].scrollHeight);
+    $('.chatbox').scrollTop($('.chatbox')[0].scrollHeight);
 });
 
 $('#text').keypress(function(e) {
