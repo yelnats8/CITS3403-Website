@@ -219,7 +219,6 @@ def edit_profile():
             current_user.avatar_path = 'avatars/' + filename
         
         db.session.commit()
-       # flash ('Your changes have been saved.')
         return redirect(url_for('user', username=current_user.username))   #can change to edit_profile so pop up doesnt look ugly of saved changes. or just remove the flash
     elif request.method == 'GET':
         form.username.data = current_user.username
