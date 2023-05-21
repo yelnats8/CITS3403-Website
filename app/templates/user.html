@@ -32,25 +32,6 @@
             {% endif %}
         </td>
     </tr>
-    
-    <!--
-    <td><img src="{{ user.avatar(128) }}" id="avatar"></td>
-    <td style="width: 5px;"></td>
-    <td> 
-        <p style="font-weight: bold;"><span style="font-size: smaller;">@</span>{{ user.username }}</p>
-        {% if user.last_seen %}
-        <p>Last seen on: {{ user.last_seen_formatted }}</p>
-        {% endif %}
-        {% if user.about_me %} 
-        <p id="aboutme">{{ user.about_me }}</p> 
-        {% else %}
-        <p id="aboutme">No description.</p> 
-        {% endif %}
-        {% if user == current_user %} 
-        <button class="submitbtn" onclick="document.location='{{ url_for('edit_profile') }}'">Edit profile</button>
-        {% endif %}
-    </td>
-    -->
 </table>
 <br>
 <div class="posts">
@@ -74,23 +55,5 @@
         <button type="submit">Add Post</button>
     </form>
 </div>
-<!--
-<table>
-    <tr valign="top">
-        <td><img src="{{ user.avatar(128) }}"></td>
-        <td> 
-            <h1>User: {{ user.username }}</h1>
-            {% if user.about_me %} <p>{{ user.about_me }}</p> {% endif %}
-            {% if user.last_seen %} <p> Last seen on: {{ user.last_seen }}</p>  {% endif %}
-            {% if user == current_user %} 
-            <p><a href="{{ url_for('edit_profile') }}">Edit your Profile</a></p>
-            {% endif %}
-        </td>
-    </tr>
-</table>
-<hr>
-{% for post in posts %} 
-{% include '_post.html' %}
-{% endfor %} 
--->
+
 {% endblock %}
