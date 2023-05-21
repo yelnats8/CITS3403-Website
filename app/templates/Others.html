@@ -13,7 +13,7 @@
 <u1 class="user-list">
     {% for user in users %}
         <li>
-            <img src="{{ user.avatar(50) }}" alt="Avatar" width="50" height="50">
+            <img src="{{ user.avatar(128) }}" alt="Avatar" width="128  " height="128">
             <a href="{{ url_for('user', username=user.username) }}" class="username-link">{{ user.username }}</a>
         </li>
     {% endfor %}
