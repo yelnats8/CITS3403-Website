@@ -51,7 +51,6 @@ Most of these steps are followig the [mega tutorial](https://blog.miguelgrinberg
     - Chat ceases to work if you use `flask run` instead of `python main.py`
 
 
-
 ## Running Unit Tests
 1. The unit tests require python's native unit testing API, pytest. Install pytest with `pip install pytest`
 2. To run the unit tests, simply type `pytest` in the command line
