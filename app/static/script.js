@@ -129,21 +129,3 @@ function scaleUpContent(scaleFactor) {
     var allContent = document.querySelector('.content');
     allContent.style.zoom = scaleFactor;
 }
-
-// from chat gpt pasted
-/*
-window.addEventListener("resize", handleResize);
-handleResize();
-function handleResize() {
-    if (window.matchMedia("(max-width: 768px)").matches) {
-        // Mobile devices
-        scaleUpContent(1.2); // Scale up by 20%
-    } else if (window.matchMedia("(max-width: 1024px)").matches) {
-        // Tablet devices
-        scaleUpContent(1.5); // Scale up by 50%
-    } else {
-        // Desktop devices
-        scaleUpContent(1); // Reset to original size
-    }
-}
-*/
