@@ -2,5 +2,7 @@
 
 {% block content %}
 <h1>Your chat history</h1>
-
+    {% for msg in history %}
+        <a href="{{url_for('chathistory', username=current_user.username, room_code = msg.room_code)}}">{{msg.room_code}}</a>
+    {% endfor%}
 {% endblock %} 

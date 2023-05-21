@@ -3,7 +3,7 @@ from flask_socketio import SocketIO, send, join_room, leave_room, emit
 from app import socketio, db
 from app.routes import rooms
 from flask_login import current_user
-from app.models import ChatHistory, User
+from app.models import ChatHistory, User, PersonalChatHistory
 import json
 
 """
@@ -111,6 +111,14 @@ def leave(message):
         history = ChatHistory(message = msg, room_code = room)
         db.session.add(history)
         db.session.commit()
+
+        PersonalChatHistory.query.filter_by(room_code = room, username=current_user.username).delete()
+        history = ChatHistory.query.filter_by(room_code = room)
+        for log in history:
+            personal_history = PersonalChatHistory(message = log.message, room_code = log.room_code, username = current_user.username)
+            db.session.add(personal_history)
+        db.session.commit()
+
 
         if rooms[room]["members"] <= 0:
             del rooms[room]

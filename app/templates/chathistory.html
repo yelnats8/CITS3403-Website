@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{%block content%}
+<!--
+<div class="chat-box">
+    <h2>Chat Room: {{roomCode}}</h2>
+    <div class = "messages" id="messages">
+    </div>
+    <div class="inputs">
+        <input type="text" rows="3" placeholder="Type here..." name="message" id="message"/>
+        <button type="button" name="send" id="send-btn" onclick="sendMessage()">Send</button>
+    </div>
+</div>
+-->
+
+<h3>Flask SocketIO Chat From the Lectures, room code {{session.room}}</h3>
+<textarea class="whitebox chatarea" id="chat" cols="80" rows ="20" readonly>
+{% for msg in history %}{{msg.message}}
+{% endfor %}
+</textarea>
+<br>
+<div class="messageDiv">
+    <input type="text" class="messageField" id="text" placeholder="Enter your message here..." disabled>
+</div> 
+<br>
+<a href="/home">Leave this room</a>
+
+
+{% endblock %}

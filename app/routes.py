@@ -1,13 +1,13 @@
 from flask import render_template, flash, redirect, url_for, request, session
 from app import app, db, socketio
 from app.forms import LoginForm, RegisterForm, ResetPassForm, EditProfileForm
-from app.models import User, ChatHistory
+from app.models import User, ChatHistory, PersonalChatHistory
 from flask_login import current_user, login_user, logout_user, login_required
 from datetime import datetime
 import random
 from string import ascii_uppercase
 
-rooms = {} #This is a dictionary to keep track of all the chat rooms we have currently, we should implement this into a database at some point
+rooms = {} #This is a dictionary to keep track of all the chat rooms we have currently
 
 #this function generates a 4 letters that acts as a unique room code
 def generate_unique_code(length):
@@ -67,6 +67,16 @@ def chat():
     """
     history = ChatHistory.query.filter_by(room_code = code)
     return render_template("chat.html", history = history)
+
+@app.route('/history')
+def history():
+    history = PersonalChatHistory.query.filter_by(username = current_user.username).group_by(PersonalChatHistory.room_code)
+    return render_template("history.html", history = history)
+
+@app.route('/chathistory/<username>/<room_code>')
+def chathistory(username,room_code):
+    history = PersonalChatHistory.query.filter_by(username = username, room_code = room_code)
+    return render_template("chathistory.html", history = history)
 
 
 @app.route('/logout')

@@ -35,3 +35,10 @@ class ChatHistory(db.Model):
     chat_id = db.Column(db.Integer, primary_key=True)
     room_code = db.Column(db.String(4))
     message = db.Column(db.String(500))
+
+class PersonalChatHistory(db.Model):
+    chat_id = db.Column(db.Integer, primary_key=True)
+    room_code = db.Column(db.String(4))
+    prompt = db.Column(db.String(100))
+    username = db.Column(db.String(64))
+    message = db.Column(db.String(500))
