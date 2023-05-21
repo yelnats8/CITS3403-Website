@@ -5,7 +5,7 @@
 <div class="whitebox chatbox">
     <div class="messages" id="messages">
         {% for msg in history %}
-        <div> <!-- individual message -->
+        <div id="chat"> <!-- individual message -->
             <span>
                 {% if msg.message_type == 1 %}
                 <a href="{{url_for('user', username=msg.sender)}}" class="statusMessage">{{msg.sender}}</a>

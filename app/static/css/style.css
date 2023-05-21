@@ -179,6 +179,8 @@ button.disabled,button.disabled:hover,button.disabled:active {
     text-align: left;
     justify-content: left;
     overflow: scroll;
+    overflow-x: hidden;
+    word-wrap: break-word;
 }
 .chatarea,.chatarea:focus { /* not in use */
     width: 80%;
