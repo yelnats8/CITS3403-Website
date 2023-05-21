@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <head>
         {% if title %}
@@ -21,12 +22,9 @@
     </head>
     <body>
         <header>
-            <img src="{{url_for('static', filename='images/icon.png')}}" 
-            style="width: 25px; height: 25px; border-radius: 3px;"> &nbsp;
+            <img id="icon" src="{{url_for('static', filename='images/icon.png')}}"> &nbsp;
             <h1>OmegeLUL</h1> &nbsp; &nbsp;
             <a class="headerbtn" href="{{ url_for('home')}}">Home</a>
-            &nbsp; &nbsp;
-            <a class="headerbtn" href="about, i broke the server">About</a>
             &nbsp; &nbsp;
             {% if current_user.is_anonymous %}
             <a class="headerbtn" href="{{ url_for('register')}}">Register</a>
@@ -56,8 +54,10 @@
             <br> <br>
         </div>
     <script src="{{ url_for('static',filename='script.js') }}"></script>
-    {% if current_user.is_anonymous %} <!-- if the user is not logged in -->
+    <!--
+    {% if current_user.is_anonymous %}  if the user is not logged in 
     <script>disableHome();</script>
     {% endif %}
+    -->
     </body>
 </html>
