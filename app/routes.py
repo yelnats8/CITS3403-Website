@@ -72,8 +72,7 @@ def home():
                 if len(queue) > 0:
                     room = queue[0]
                     session["room"] = room
-                    prompt = ChatHistory.query.filter_by(room_code = room).first()
-                    session["prompt"] = prompt.prompt
+                    session["prompt"] = rooms[room]["prompt"]
                     queue.pop(0)
                     return redirect(url_for('chat'))
                 else:
@@ -99,7 +98,7 @@ def chat():
     if room is None or room not in rooms:
         return redirect(url_for("home"))
     """
-    history = ChatHistory.query.filter_by(room_code = session["room"]).group_by(ChatHistory.prompt)
+    history = ChatHistory.query.filter_by(room_code = session["room"])
     return render_template("chat.html", history = history)
 
 @app.route('/history')

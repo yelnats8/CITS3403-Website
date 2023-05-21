@@ -33,6 +33,7 @@ class User(UserMixin, db.Model):
     
 class ChatHistory(db.Model):
     chat_id = db.Column(db.Integer, primary_key=True)
+    sender = db.Column(db.String(64))
     room_code = db.Column(db.String(4))
     message = db.Column(db.String(500))
     prompt= db.Column(db.String(100))
