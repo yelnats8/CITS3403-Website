@@ -4,7 +4,7 @@ header {
     left: 0;
     right: 0;
     min-width: 201.4vh;
-    height: 50px;
+    height: 60px;
     box-sizing: border-box;
     border-style: solid;
     border-width: thin;
@@ -20,7 +20,7 @@ header {
 h1 { /* title of webpage */
     color: lightblue;
     font-family: serif;
-    font-size: larger;
+    font-size: x-large;
     font-weight: 100;
 }
 h2 {
@@ -49,6 +49,7 @@ body {
 }
 /* LINKS */
 a.headerbtn {
+    font-size: larger;
     color: pink;
     text-decoration: none;
 }
