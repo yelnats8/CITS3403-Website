@@ -3,6 +3,7 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from hashlib import md5
 from datetime import datetime
+from flask import url_for
 
 
 @login.user_loader
@@ -35,7 +36,7 @@ class User(UserMixin, db.Model):
             return check_password_hash(self.password_hash, password)
     def avatar(self, size):
          if self.avatar_path:
-              return self.avatar_path
+              return url_for('static', filename=self.avatar_path)
          else:
             digest = md5(self.username.lower().encode('utf-8')).hexdigest()
             return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(digest, size)   
