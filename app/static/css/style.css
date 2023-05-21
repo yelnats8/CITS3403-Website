@@ -214,18 +214,20 @@ button.disabled,button.disabled:hover,button.disabled:active {
     background: none;
 }
 /* PROFILE PAGE */
+.profiletable {
+    width: 70%;
+    border-collapse: collapse;
+}
+.profiletable td {
+    text-align: left;
+}
 #avatar {
-    width: 130px; 
-    height: 130px;
+    width: 140px; 
+    height: 140px;
     border-style: solid;
     border-width: 2px;
     border-color:#5a5859;
     border-radius: 5pt;
-}
-#aboutme {
-    font-size: medium;
-    white-space: normal;
-    word-break: break-word;
 }
 /* DISPLAY */
 .whitebox {
