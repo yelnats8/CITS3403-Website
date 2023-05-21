@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% if current_user.is_anonymous == false %} <!-- if the user is logged in  -->
 <form action = "" method="post" class="chatform">
     <nobr>
         <h3>Welcome to OmegeLUL!</h3>
-        <p id="p1">Hi {{ current_user.username }}! Join a chat room or start a new room 😁</p>
+        <p id="p1">Hi {{ current_user.username }}! Start a chat or join a chat room 😁</p>
     </nobr>
     <!--
     <div class="joinDiv">
@@ -12,9 +13,9 @@
         <button type="submit" id="joinChatBtn" class="startchatbtn" name="join">Join a room</button>
     </div>
     -->
-    <button type="submit" id="joinChatBtn" class="startchatbtn" name="join">Join a room</button>
+    <button type="submit" id="startNewChatBtn" class="startchatbtn" name="create">Start a chat</button>
     <br>
-    <button type="submit" id="startNewChatBtn" class="startchatbtn" name="create">Start a new chat</button>
+    <button type="submit" id="joinChatBtn" class="startchatbtn" name="join">Join a room</button>
     <br>
     <div id="interestsDiv">
         <div style="margin: 0;">
@@ -42,15 +43,11 @@
     </nobr>
     <button type="submit" id="StartNewQuestionsModeBtn" class="startchatbtn" name="questionsMode">Discuss a question</button>
 </form>
-<!-- 
-<br>
-<form action = "" method="post" class="chat">
-    <div class="join">
-        <input type="text" placeholder="Room Code" name="roomCode" value="{{roomCode}}" />
-        <button type="submit" name="join">Join a Room</button>
-    </div>
-    <button type="submit" name="create" class ="create-btn">Create a Room</button>
-</form>
--->
 <script src="{{ url_for('static',filename='home.js') }}"></script>
+{% else %} <!-- user is not logged in -->
+<nobr>
+    <h3>Welcome to OmegeLUL!</h3>
+    <p>About description etc etc</p>
+</nobr>
+{% endif %}
 {% endblock %}

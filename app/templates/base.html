@@ -53,8 +53,10 @@
             <br> <br>
         </div>
     <script src="{{ url_for('static',filename='script.js') }}"></script>
-    {% if current_user.is_anonymous %} <!-- if the user is not logged in -->
+    <!--
+    {% if current_user.is_anonymous %}  if the user is not logged in 
     <script>disableHome();</script>
     {% endif %}
+    -->
     </body>
 </html>
