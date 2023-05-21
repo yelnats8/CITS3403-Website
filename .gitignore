@@ -1,7 +1,7 @@
 **/__pycache__
 migrations/
 app.db
-app/static/avatars/
+app/static/avatars/*
 
 #This is to ignore the virtual environment
 venv/
