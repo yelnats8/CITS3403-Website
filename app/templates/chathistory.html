@@ -12,7 +12,7 @@
 </div>
 -->
 
-<h3>Flask SocketIO Chat From the Lectures, room code {{session.room}}</h3>
+<h3>{{history.first().prompt}}, room code {{session.room}}</h3>
 <textarea class="whitebox chatarea" id="chat" cols="80" rows ="20" readonly>
 {% for msg in history %}{{msg.message}}
 {% endfor %}
@@ -22,7 +22,7 @@
     <input type="text" class="messageField" id="text" placeholder="Enter your message here..." disabled>
 </div> 
 <br>
-<a href="/home">Leave this room</a>
+<a href="/history">Leave this room</a>
 
 
 {% endblock %}

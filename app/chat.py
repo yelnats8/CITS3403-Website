@@ -4,7 +4,6 @@ from app import socketio, db
 from app.routes import rooms
 from flask_login import current_user
 from app.models import ChatHistory, User, PersonalChatHistory
-import json
 
 """
 @socketio.on("connect")
@@ -60,13 +59,14 @@ def message(data):
 @socketio.on("joined", namespace="/chat")
 def joined(msg):
     room = session.get("room")
+    prompt = session.get("prompt")
     join_room(room)
     connect_msg = current_user.username + ' has entered the room.'
     emit('status', {'msg': connect_msg}, room=room)
     
     rooms[room]["messages"].append(connect_msg)
 
-    history = ChatHistory(message = connect_msg, room_code = room)
+    history = ChatHistory(message = connect_msg, room_code = room, prompt = prompt)
     db.session.add(history)
     db.session.commit()
     rooms[room]["members"] +=1
@@ -80,12 +80,13 @@ def joined(msg):
 @socketio.on("text", namespace="/chat")
 def text(messages):
     room = session.get("room")
+    prompt = session.get("prompt")
     if current_user.username not in rooms[room]["usernames"]:
         rooms[room]["usernames"].append(current_user.username)
 
     msg = current_user.username + ' : ' + messages['msg']
 
-    history = ChatHistory(message = msg, room_code = room)
+    history = ChatHistory(message = msg, room_code = room, prompt = prompt)
     db.session.add(history)
     db.session.commit()
 
@@ -97,6 +98,7 @@ def text(messages):
 @socketio.on('leave', namespace="/chat")
 def leave(message):
     room = session.get("room")
+    prompt = session.get("prompt")
     leave_room(room)
 
     if room in rooms:
@@ -108,14 +110,14 @@ def leave(message):
         emit('status', {'msg': msg}, room = room)
         rooms[room]["messages"].append(current_user.username + ' has left the room.')
 
-        history = ChatHistory(message = msg, room_code = room)
+        history = ChatHistory(message = msg, room_code = room, prompt = prompt)
         db.session.add(history)
         db.session.commit()
 
         PersonalChatHistory.query.filter_by(room_code = room, username=current_user.username).delete()
         history = ChatHistory.query.filter_by(room_code = room)
         for log in history:
-            personal_history = PersonalChatHistory(message = log.message, room_code = log.room_code, username = current_user.username)
+            personal_history = PersonalChatHistory(message = log.message, room_code = log.room_code, username = current_user.username, prompt= log.prompt)
             db.session.add(personal_history)
         db.session.commit()
 
