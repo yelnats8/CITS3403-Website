@@ -7,7 +7,7 @@
         {% for msg in history %}
             <div class="text">
                 <span>
-                    <strong>{{msg.username}}</strong>
+                    <a href="{{url_for('user', username=msg.username)}}"><strong>{{msg.username}} </strong></a>
                     {{msg.message}}
                 </span>
             </div>

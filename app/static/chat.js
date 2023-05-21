@@ -38,10 +38,11 @@ function leave_room() {
 
 const messages = document.getElementById("messages");
 const createMessage = (data) => {
+    var link = "/user/" + encodeURIComponent(data.user);
     const content = `
         <div class="text">
             <span>
-                <strong>${data.user}:</strong>
+                <a href=${link}><strong>${data.user}:</strong></a>
                 ${data.msg}
             </span>
             <span class="muted">
@@ -53,10 +54,11 @@ const createMessage = (data) => {
 };
 
 const statusMessage = (data) => {
+    var link = "/user/" + encodeURIComponent(data.user);
     const content = `
         <div class="text">
             <span>
-                <strong>${data.user}</strong>
+                <a href=${link}><strong>${data.user}</strong></a>
                 ${data.msg}
             </span>
             <span class="muted">
