@@ -3,6 +3,7 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from hashlib import md5
 from datetime import datetime
+from flask import url_for
 
 
 @login.user_loader
@@ -16,6 +17,13 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(128))
     about_me = db.Column(db.String(140))
     last_seen = db.Column(db.DateTime, default=datetime.utcnow())
+    avatar_path = db.Column(db.String(200))
+
+    posts = db.relationship('Post', backref='author', lazy='dynamic')
+
+    @property
+    def last_seen_formatted(self):
+         return self.last_seen.strftime('%Y-%m-%d %H:%M:%S')
     
 
     def __repr__(self):
@@ -27,9 +35,11 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
             return check_password_hash(self.password_hash, password)
     def avatar(self, size):
-         digest = md5(self.username.lower().encode('utf-8')).hexdigest()
-         return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(
-            digest, size)   
+         if self.avatar_path:
+              return url_for('static', filename=self.avatar_path)
+         else:
+            digest = md5(self.username.lower().encode('utf-8')).hexdigest()
+            return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(digest, size)   
     
 class ChatHistory(db.Model):
     chat_id = db.Column(db.Integer, primary_key=True)
@@ -50,3 +60,12 @@ class PersonalChatHistory(db.Model):
     message = db.Column(db.String(500))
     message_type = db.Column(db.Integer)
     date = db.Column(db.DateTime)
+
+class Post(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    body = db.Column(db.String(140))
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+    def __repr__(self):
+        return f"<Post(id={self.id}, body='{self.body}', timestamp={self.timestamp}, user_id={self.user_id})>"

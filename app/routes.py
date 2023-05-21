@@ -1,12 +1,13 @@
 from flask import render_template, flash, redirect, url_for, request, session
 from app import app, db, socketio
 from app.forms import LoginForm, RegisterForm, ResetPassForm, EditProfileForm
-from app.models import User, ChatHistory, PersonalChatHistory
+from app.models import User, ChatHistory, Post, PersonalChatHistory
 from flask_login import current_user, login_user, logout_user, login_required
 from datetime import datetime
 import random
-import json
 import os
+from werkzeug.utils import secure_filename
+import json
 from string import ascii_uppercase
 
 rooms = {} #This is a dictionary to keep track of all the chat rooms we have currently
@@ -168,15 +169,32 @@ def reset():
     
     return render_template('reset.html', title ='Register', form=form)
 
-@app.route('/user/<username>')  #Following tutorial 
+@app.route('/user/<username>', methods=['GET', 'POST'])  #Adding comments
 @login_required
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
-    posts = [
-        {'author': user, 'body': 'Test post #1'},
-        {'author': user, 'body' : 'Test post #2'}
-    ]
+
+    if request.method == 'POST':
+        post_body = request.form['post_body']
+        new_post = Post(body=post_body, timestamp=datetime.utcnow(), author=user)
+        db.session.add(new_post)
+        db.session.commit()
+        
+    posts = user.posts.all()
     return render_template('user.html',user=user,posts=posts)
+
+@app.route('/user/<username>/post/<post_id>/delete', methods=['POST'])
+@login_required
+def delete_post(username, post_id):
+    user = User.query.filter_by(username=username).first_or_404()
+    post = Post.query.get(post_id)
+
+    if post and post.author == user:
+        db.session.delete(post)
+        db.session.commit()
+    return redirect(url_for('user', username=username))
+
+
 
 @app.before_request
 def before_request():
@@ -188,9 +206,18 @@ def before_request():
 @login_required
 def edit_profile():
     form = EditProfileForm()
+
     if form.validate_on_submit():
         current_user.username = form.username.data
         current_user.about_me = form.about_me.data
+
+        if form.avatar.data:
+            file = form.avatar.data
+            filename = secure_filename(file.filename)
+            filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            file.save(filepath)
+            current_user.avatar_path = 'avatars/' + filename
+        
         db.session.commit()
        # flash ('Your changes have been saved.')
         return redirect(url_for('user', username=current_user.username))   #can change to edit_profile so pop up doesnt look ugly of saved changes. or just remove the flash
