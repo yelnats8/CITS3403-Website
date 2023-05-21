@@ -7,7 +7,7 @@ from app.models import ChatHistory, User, PersonalChatHistory
 from datetime import datetime
 
 
-#when the user first joins chat
+#WHEN USER FIRST JOINS CHAT
 @socketio.on("joined", namespace="/chat")
 def joined(msg):
     room = session.get("room")
@@ -35,7 +35,7 @@ def joined(msg):
     print(f"room {room} now has {members} members")
     print(f"{current_user.username} has joined room {room}")
 
-#when the user sends a message
+#WHEN USER SENDS A MESSAGE
 @socketio.on("text", namespace="/chat")
 def text(messages):
     room = session.get("room")
@@ -54,7 +54,7 @@ def text(messages):
     emit('message', {'user': current_user.username,'msg': msg}, room = room)
     print(f"{msg} on room {room}")
 
-#when the user leaves chat
+#WHEN USER LEAVES CHAT
 @socketio.on('leave', namespace="/chat")
 def leave(message):
     room = session.get("room")

@@ -10,7 +10,8 @@ import os
 from string import ascii_uppercase
 
 rooms = {} #This is a dictionary to keep track of all the chat rooms we have currently
-queue = []
+queue = [] #This is a list that represents a queue of rooms for matchmaking to work
+
 #this function generates a 4 letters that acts as a unique room code
 def generate_unique_code(length):
     while True:
@@ -21,6 +22,7 @@ def generate_unique_code(length):
             break
     return code
 
+#this function generates a prompt from a json file filled with prompts
 def generate_prompt():
     path = os.getcwd()+"/prompts.json"
     print(path)
