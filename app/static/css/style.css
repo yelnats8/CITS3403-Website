@@ -238,19 +238,106 @@ button.disabled,button.disabled:hover,button.disabled:active {
 .profiletable {
     width: 70%;
     border-collapse: collapse;
-}
-.profiletable td {
+  }
+  
+  .profiletable td {
     text-align: left;
-}
-#avatar {
-    width: 140px; 
+  }
+  
+  #avatar {
+    width: 140px;
     height: 140px;
     border-style: solid;
     border-width: 2px;
-    border-color:#5a5859;
+    border-color: #5a5859;
     border-radius: 5pt;
     margin-bottom: 20px;
-}
+  }
+  
+  /* Post Part */
+  .post-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .posts {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .post {
+    display: flex;
+    margin-bottom: 0;
+    margin-left: 10px;
+    align-items: flex-start;
+    width: 100%;
+  }
+  
+  .avatar-container {
+    margin-right: 10px;
+  }
+  
+  .avatar {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .post-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  
+  .author-info {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .username {
+    font-weight: bold;
+    margin-right: 5px;
+  }
+  
+  .posted-on {
+    font-size: small;
+  }
+  
+  .comment {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  
+  .delete-button {
+    margin-top: 5px;
+  }
+  
+  /* DISPLAY */
+  .whitebox {
+    padding: 20px;
+    border-style: solid;
+    border-width: thin;
+    border-color: pink;
+    border-radius: 5pt;
+    background-color: white;
+  }
+  
+  .content {
+    margin: auto;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    width: 700px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    overflow-y: auto;
+  }
+  
 /* DISPLAY */
 .whitebox {
     padding: 20px;

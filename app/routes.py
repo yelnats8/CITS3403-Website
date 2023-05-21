@@ -172,9 +172,13 @@ def user(username):
 
     if request.method == 'POST':
         post_body = request.form['post_body']
-        new_post = Post(body=post_body, timestamp=datetime.utcnow(), author=user)
-        db.session.add(new_post)
-        db.session.commit()
+        post_length = Post.get_post_length(post_body)
+        if not Post.validate_post_length(post_body):
+            flash(f'Post Exceeds maximum length of 200 characters. Current length: {post_length} ')
+        else:
+            new_post = Post(body=post_body, timestamp=datetime.utcnow(), author=user)
+            db.session.add(new_post)
+            db.session.commit()
         
     posts = user.posts.all()
     return render_template('user.html',user=user,posts=posts)

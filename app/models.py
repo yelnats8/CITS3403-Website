@@ -65,9 +65,18 @@ class PersonalChatHistory(db.Model):
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    body = db.Column(db.String(140))
+    body = db.Column(db.String(200))
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __repr__(self):
         return f"<Post(id={self.id}, body='{self.body}', timestamp={self.timestamp}, user_id={self.user_id})>"
+    
+    def validate_post_length(post_body):
+        return len(post_body) <= 200
+    
+    def get_post_length(post_body):
+        return len(post_body)
+
+
+        
