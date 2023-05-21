@@ -7,12 +7,15 @@
         {% for msg in history %}
             <div class="text">
                 <span>
-                    <a href="{{url_for('user', username=msg.username)}}"><strong>{{msg.username}} </strong></a>
-                    {{msg.message}}
+                    <a href="{{url_for('user', username=msg.username)}}"><strong>{{msg.username}}</strong></a>
+                    {% if msg.message_type == 1 %}
+                        <strong>{{msg.message}}</strong>
+                    {% else %}
+                        <strong>:</strong> {{msg.message}}
+                    {% endif %}
                 </span>
             </div>
         {% endfor %}
-        <br>
     </div>
     <a href="/history">Leave this room</a>
 <!--

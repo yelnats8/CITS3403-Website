@@ -43,7 +43,7 @@ const createMessage = (data) => {
         <div class="text">
             <span>
                 <a href=${link}><strong>${data.user}:</strong></a>
-                ${data.msg}
+                 ${data.msg}
             </span>
             <span class="muted">
                 <!-- Need to change the above -->
@@ -59,7 +59,7 @@ const statusMessage = (data) => {
         <div class="text">
             <span>
                 <a href=${link}><strong>${data.user}</strong></a>
-                ${data.msg}
+                 <strong>${data.msg}</strong>
             </span>
             <span class="muted">
                 <!-- Need to change the above -->

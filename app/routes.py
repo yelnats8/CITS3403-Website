@@ -105,12 +105,12 @@ def chat():
 
 @app.route('/history')
 def history():
-    history = PersonalChatHistory.query.filter_by(username = current_user.username).group_by(PersonalChatHistory.room_code).order_by(PersonalChatHistory.date.desc())
+    history = PersonalChatHistory.query.filter_by(user_id = current_user.id).group_by(PersonalChatHistory.room_code).order_by(PersonalChatHistory.date.desc())
     return render_template("history.html", history = history)
 
 @app.route('/chathistory/<username>/<room_code>')
 def chathistory(username,room_code):
-    history = PersonalChatHistory.query.filter_by(username = username, room_code = room_code)
+    history = PersonalChatHistory.query.filter_by(user_id = current_user.id, room_code = room_code)
     return render_template("chathistory.html", history = history)
 
 

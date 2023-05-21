@@ -9,7 +9,7 @@ from datetime import datetime
 
 #WHEN USER FIRST JOINS CHAT
 @socketio.on("joined", namespace="/chat")
-def joined(msg):
+def joined(messages):
     room = session.get("room")
     prompt = session.get("prompt")
     
@@ -20,12 +20,12 @@ def joined(msg):
         rooms[room]["usernames"].append(current_user.username)
 
     join_room(room)
-    connect_msg =' has entered the room.'
-    emit('status', {'user': current_user.username, 'msg': connect_msg}, room=room)
+    msg =' has entered the room'
+    emit('status', {'user': current_user.username, 'msg': msg}, room=room)
     
-    rooms[room]["messages"].append(connect_msg)
+    rooms[room]["messages"].append(msg)
 
-    history = ChatHistory(message = connect_msg, room_code = room, prompt = prompt, sender=current_user.username, date= datetime.utcnow())
+    history = ChatHistory(message = msg, room_code = room, prompt = prompt, sender=current_user.username, sender_id=current_user.id, date= datetime.utcnow(), message_type = 1)
     db.session.add(history)
     db.session.commit()
     rooms[room]["members"] +=1
@@ -46,7 +46,7 @@ def text(messages):
 
     msg = messages['msg']
 
-    history = ChatHistory(message = msg, room_code = room, prompt = prompt, sender= current_user.username, date= datetime.utcnow())
+    history = history = ChatHistory(message = msg, room_code = room, prompt = prompt, sender=current_user.username, sender_id=current_user.id, date= datetime.utcnow(), message_type = 0)
     db.session.add(history)
     db.session.commit()
 
@@ -67,18 +67,18 @@ def leave(message):
         print(f"room {room} now has {members} members")
 
         msg = ' has left the room'
-        emit('status', {'user': current_user.username, 'msg': ' has left the room.'}, room = room)
-        rooms[room]["messages"].append(current_user.username + ' has left the room.')
+        emit('status', {'user': current_user.username, 'msg': ' has left the room'}, room = room)
+        rooms[room]["messages"].append(current_user.username + ' has left the room')
 
-        history = ChatHistory(message = msg, room_code = room, prompt = prompt, sender= current_user.username, date= datetime.utcnow())
+        history = history = ChatHistory(message = msg, room_code = room, prompt = prompt, sender=current_user.username, sender_id=current_user.id, date= datetime.utcnow(), message_type = 1)
         db.session.add(history)
         db.session.commit()
 
-        PersonalChatHistory.query.filter_by(room_code = room, username=current_user.username).delete()
+        PersonalChatHistory.query.filter_by(room_code = room, user_id = current_user.id).delete()
         history = ChatHistory.query.filter_by(room_code = room)
 
         for log in history:
-            personal_history = PersonalChatHistory(message = log.message, room_code = log.room_code, username = current_user.username, prompt= log.prompt, date = log.date)
+            personal_history = PersonalChatHistory(message = log.message, room_code = log.room_code, username = current_user.username, prompt= log.prompt, date = log.date, user_id = log.sender_id, message_type = log.message_type)
             db.session.add(personal_history)
         db.session.commit()
 
