@@ -7,3 +7,8 @@ def client(app):
     client.config.update({"TESTING": True,})
 
     yield client
+
+
+@pytest.fixture()
+def client(app):
+    return app.test_client()
