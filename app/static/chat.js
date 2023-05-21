@@ -22,8 +22,10 @@ $('#text').keypress(function(e) {
     var code = e.keyCode || e.which;
     if (code == 13) {
         text = $('#text').val();
-        socketio.emit("text", {msg: text});
-        $('#text').val('');
+        if (text != "") {
+            socketio.emit("text", {msg: text});
+            $('#text').val('');
+        }
     }
 });
 });
