@@ -40,7 +40,8 @@ class User(UserMixin, db.Model):
          else:
             digest = md5(self.username.lower().encode('utf-8')).hexdigest()
             return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(digest, size)   
-    
+
+#This is a temporary table that is always changing as rooms are created and destroyed
 class ChatHistory(db.Model):
     chat_id = db.Column(db.Integer, primary_key=True)
     sender = db.Column(db.String(64))
@@ -51,6 +52,7 @@ class ChatHistory(db.Model):
     prompt= db.Column(db.String(100))
     date = db.Column(db.DateTime)
 
+#This is a more permanent database that stores all of a user's chat history before the room code gets overwritten with new ones
 class PersonalChatHistory(db.Model):
     chat_id = db.Column(db.Integer, primary_key=True)
     room_code = db.Column(db.String(4))

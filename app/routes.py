@@ -97,10 +97,6 @@ def home():
 
 @app.route('/chat')
 def chat():
-    """
-    if room is None or room not in rooms:
-        return redirect(url_for("home"))
-    """
     history = ChatHistory.query.filter_by(room_code = session["room"])
     return render_template("chat.html", history = history)
 

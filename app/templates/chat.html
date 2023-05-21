@@ -26,20 +26,5 @@
 <br>
 <a href="/home" onclick="leave_room();">Leave this room</a>
 
-<!--
-    <div class="inputs">
-        <input type="text" rows="3" placeholder="Type here..." name="message" id="message"/>
-        <button type="button" name="send" id="send-btn" onclick="sendMessage()">Send</button>
-    </div>
-</div>
--->
-<!--
-<h3>{{session.prompt}}, room code {{session.room}}</h3>
-<textarea class="whitebox chatarea" id="chat" cols="80" rows ="20" readonly>
-{% for msg in history %}{{msg.message}}
-{% endfor %}
-</textarea>
--->
-
 <script src="{{ url_for('static',filename='chat.js') }}" type="text/javascript" charset="utf-8"></script>
 {% endblock %}

@@ -6,14 +6,6 @@
     {% for error in form.username.errors %}
     {{ error }}
     {% endfor %}
-    <!-- this part is redundant
-    {% for error in form.password.errors %}
-    {{ error }}
-    {% endfor %}
-    {% for error in form.confirm_password.errors %}
-    {{ error }}
-    {% endfor %}
-    -->
 </span>
 <form id="registerForm" action="" method="post" novalidate onsubmit="checkRegister();">
     {{ form.hidden_tag() }}
