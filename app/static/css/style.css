@@ -42,6 +42,11 @@ body {
     background-color: lightgoldenrodyellow;
     font-family: 'Gill Sans MT';
 }
+#icon {
+    width: 25px; 
+    height: 25px; 
+    border-radius: 3px;
+}
 /* LINKS */
 a.headerbtn {
     color: pink;
@@ -230,6 +235,11 @@ button.disabled,button.disabled:hover,button.disabled:active {
     text-align: center;
 }
 /* FOR MOBILE DEVICES */
+.contentMobile {
+    width: 95%;
+    height: 1000px !important;
+}
+
 .headerMobile {
     height: 8%;
 }
@@ -243,19 +253,6 @@ button.disabled,button.disabled:hover,button.disabled:active {
     margin-top: auto;
     margin-bottom: auto;
 }
-.contentMobile {
-    left: 0;
-    right: 0;
-    margin-top: auto;
-    margin-bottom: auto;
-    height: max-content;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
 
 /* PREV STYLE */
 

@@ -2,6 +2,7 @@
 var header = document.getElementsByTagName("header");
 var h1 = document.getElementsByTagName("h1");
 var headerbtn = document.getElementsByClassName("headerbtn");
+var icon = document.getElementById("icon");
 // div classes
 var whitebox = document.getElementsByClassName("whitebox");
 var content = document.getElementsByClassName("content");
@@ -22,44 +23,75 @@ function disableHome() { /* currently not in use */
 }
 
 // RESPONSIVITY FOR DEVICE TYPE
-
-// window.addEventListener("resize", reportWindowSize);
-window.onresize = function(event) {
+window.onresize = function(event) {checkDevice();};
+checkDevice();
+function checkDevice() {
     var width = window.innerWidth;
     var height = window.innerHeight;
-    checkDevice(width,height);
-};
-checkDevice();
-function checkDevice(width,height) {
     var isMobile = false;
-    var device = "";
     // determines touch support
     if ('ontouchstart' in window || navigator.maxTouchPoints) {
         isMobile = true;
     }
     if (isMobile) {
-        device = "mobile";
-        // check the screen res here, then call resizeForMobile()
+        var aspectRatio = width/height;
+        console.log("width "+width,"height "+height);
+        console.log("aspect ratio: " + aspectRatio);
+        if (aspectRatio < 0.6) {
+            console.log("you are on mobile");
+            resizeForMobile();
+        }
+        else if (aspectRatio < 1 && aspectRatio > 0.6) {
+            console.log("you are on tablet portrait orientation");
+            resizeForTablet();
+        }
+        else {console.log("you are on long touch screen device");}
+        return;
     } 
-    else {
-        device = "computer";
+    else if (isMobile == false) {
+        console.log("you are on computer");
+        return;
     }
-    console.log("you are on " + device);
 }
 
 function resizeForMobile() {
     // make header and header items bigger
-    header[0].classList.add('headerMobile');
-    h1[0].classList.add('h1Mobile');
-    for (var i = 0; i < headerbtn.length; i++) {
-        // headerbtn[i].setAttribute('data-index', i); // debug
-        // console.log('Element at index', i, headerbtn[i]); // debug
-        headerbtn[i].classList.add('headerbtnMobile');           
+    header[0].style.height = "5%";
+    h1[0].style.fontSize = "250%";
+    icon.style.width = h1[0].offsetHeight + "px";
+    icon.style.height = h1[0].offsetHeight + "px";
+    for (var i = 0; i < headerbtn.length; i++) {  
+        headerbtn[i].style.fontSize = "200%";         
     }
     // make content div fit whole screen
-    for (var i = 0; i < content.length; i++) {
-        content[i].classList.add('whiteboxMobile');
-        content[i].classList.add('contentMobile');   
-        content[i].classList.remove('content');          
+    var windowHeight = window.innerHeight;
+    var headerHeight = header[0].offsetHeight;
+    var bodyHeight = windowHeight - headerHeight;
+    var marginPercent = content[0].offsetHeight;
+    // var marginPercent = (bodyHeight - 400) / 2;
+    console.log(marginPercent);
+    content[0].style.marginTop = marginPercent + "px";
+    content[0].style.width = "95%";
+    content[0].style.height = "";
+}
+
+function resizeForTablet() {
+    // make header and header items bigger
+    header[0].style.height = "5%";
+    h1[0].style.fontSize = "200%";
+    icon.style.width = h1[0].offsetHeight + "px";
+    icon.style.height = h1[0].offsetHeight + "px";
+    for (var i = 0; i < headerbtn.length; i++) {  
+        headerbtn[i].style.fontSize = "150%";         
     }
+    // make content div fit whole screen
+    var windowHeight = window.innerHeight;
+    var headerHeight = header[0].offsetHeight;
+    var bodyHeight = windowHeight - headerHeight;
+    var marginPercent = content[0].offsetHeight;
+    // var marginPercent = (bodyHeight - 400) / 2;
+    console.log(marginPercent);
+    content[0].style.marginTop = marginPercent + "px";
+    content[0].style.width = "95%";
+    content[0].style.height = "";
 }
