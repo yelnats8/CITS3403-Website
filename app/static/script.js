@@ -7,6 +7,7 @@ var icon = document.getElementById("icon");
 var whitebox = document.getElementsByClassName("whitebox");
 var content = document.getElementsByClassName("content");
 // buttons
+var joinDiv = document.getElementsByClassName("joinDiv");
 var startchatbtns = document.getElementsByClassName("startchatbtn");
 // interests div
 var interestsDiv = document.getElementById("interestsDiv");
@@ -85,6 +86,7 @@ function resizeForMobile() {
         for (var i = 0; i < startchatbtns.length; i++) {
             startchatbtns[i].style.width = "160%";
         }
+        joinDiv[0].style.width = "160%";
         // make interests div bigger
         interestsDiv.style.width = startchatbtns[0].offsetWidth + "px";
     } catch (error) {
@@ -115,6 +117,7 @@ function resizeForTablet() {
         for (var i = 0; i < startchatbtns.length; i++) {
             startchatbtns[i].style.width = "140%";
         }
+        joinDiv[0].style.width = "140%";
         // make interests div bigger
         interestsDiv.style.width = startchatbtns[0].offsetWidth + "px";
     } catch (error) {
