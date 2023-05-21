@@ -6,55 +6,6 @@ from flask_login import current_user
 from app.models import ChatHistory, User, PersonalChatHistory
 from datetime import datetime
 
-"""
-@socketio.on("connect")
-def connect(auth):
-    room = session.get("room")
-    if current_user.is_authenticated:
-        name = current_user.username
-    else:
-        name = current_user
-    if not room or not name:
-        print("not room or name")
-        return
-    if room not in rooms:
-        print("not room in rooms")
-        leave_room(room)
-        return
-    
-    join_room(room)
-    send({"name": name, "message": "has entered the room"},roomCode = room, to=room)
-    rooms[room]["members"] +=1
-    print(f"{current_user} joined the room {room}")
-
-   
-@socketio.on("disconnect")
-def disconnect ():
-    room = session.get("room")
-    name = current_user.username
-    leave_room(room)
-
-    if room in rooms:
-        rooms[room]["members"] -= 1
-        if rooms[room]["members"] <= 0:
-            del rooms[room]
-            print(f"room {room} has been deleted")
-
-    send({"name": name, "message": "has left the room"}, to=room)
-
-    print(f"{current_user} left the room {room}")
-
-@socketio.on("message")
-def message(data):
-    name = current_user.username
-    content = {
-        "name": name,
-        "message": data["data"]
-    }
-    emit('broadcast message', content, broadcast=True)
-    print(f"{name} said: {data['data']}")
-"""
-
 
 #when the user first joins chat
 @socketio.on("joined", namespace="/chat")
@@ -62,6 +13,12 @@ def joined(msg):
     room = session.get("room")
     prompt = session.get("prompt")
     
+    if current_user.username in rooms[room]["usernames"]:
+        join_room(room)
+        return
+    else:
+        rooms[room]["usernames"].append(current_user.username)
+
     join_room(room)
     connect_msg =' has entered the room.'
     emit('status', {'user': current_user.username, 'msg': connect_msg}, room=room)
@@ -125,6 +82,7 @@ def leave(message):
             db.session.add(personal_history)
         db.session.commit()
 
+        rooms[room]["usernames"].pop(rooms[room]["usernames"].index(current_user.username))
 
         if rooms[room]["members"] <= 0:
             del rooms[room]
@@ -135,23 +93,7 @@ def leave(message):
             print(f"room {room} has been deleted")
 
 
+
     
     print(f"{current_user.username} has left room {room}")
     
-
-
-"""
-def message(data):
-    room = session.get("room")
-    name = current_user.username
-    if room not in rooms:
-        return
-    
-    content = {
-        "name": name,
-        "message": data["data"]
-    }
-    send(content, to=room)
-    #rooms[room]["messages"].append(content)
-    print(f"{name} said: {data['data']}")
-"""

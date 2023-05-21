@@ -22,7 +22,7 @@ def generate_unique_code(length):
     return code
 
 def generate_prompt():
-    path = os.getcwd()+"\prompts.json"
+    path = os.getcwd()+"/prompts.json"
     print(path)
     try:
         with open("prompts.json", 'r') as file:
@@ -55,7 +55,7 @@ def home():
                     flash('Room ' +code+ ' does not exist')
                     return render_template('home.html', title = 'Home')
                 session["room"] = code
-                session["prompt"] = ChatHistory.query.filter_by(room_code = code).first()
+                session["prompt"] = ChatHistory.query.filter_by(room_code = code).first().prompt
                 return redirect(url_for('chat'))
                 
             room = code
