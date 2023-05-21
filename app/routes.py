@@ -11,7 +11,7 @@ import json
 from string import ascii_uppercase
 
 rooms = {} #This is a dictionary to keep track of all the chat rooms we have currently
-queue = []
+queue = [] #This is a list that represents a queue of rooms for matchmaking to work
 
 #this function generates a 4 letters that acts as a unique room code
 def generate_unique_code(length):
@@ -23,8 +23,9 @@ def generate_unique_code(length):
             break
     return code
 
+#this function generates a prompt from a json file filled with prompts
 def generate_prompt():
-    path = os.getcwd()+"\prompts.json"
+    path = os.getcwd()+"/prompts.json"
     print(path)
     try:
         with open("prompts.json", 'r') as file:
@@ -57,7 +58,7 @@ def home():
                     flash('Room ' +code+ ' does not exist')
                     return render_template('home.html', title = 'Home')
                 session["room"] = code
-                session["prompt"] = ChatHistory.query.filter_by(room_code = code).first()
+                session["prompt"] = ChatHistory.query.filter_by(room_code = code).first().prompt
                 return redirect(url_for('chat'))
                 
             room = code
@@ -105,12 +106,12 @@ def chat():
 
 @app.route('/history')
 def history():
-    history = PersonalChatHistory.query.filter_by(username = current_user.username).group_by(PersonalChatHistory.room_code).order_by(PersonalChatHistory.date.desc())
+    history = PersonalChatHistory.query.filter_by(user_id = current_user.id).group_by(PersonalChatHistory.room_code).order_by(PersonalChatHistory.date.desc())
     return render_template("history.html", history = history)
 
 @app.route('/chathistory/<username>/<room_code>')
 def chathistory(username,room_code):
-    history = PersonalChatHistory.query.filter_by(username = username, room_code = room_code)
+    history = PersonalChatHistory.query.filter_by(user_id = current_user.id, room_code = room_code)
     return render_template("chathistory.html", history = history)
 
 

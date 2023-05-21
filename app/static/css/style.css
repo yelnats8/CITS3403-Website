@@ -4,7 +4,7 @@ header {
     left: 0;
     right: 0;
     min-width: 201.4vh;
-    height: 50px;
+    height: 60px;
     box-sizing: border-box;
     border-style: solid;
     border-width: thin;
@@ -20,7 +20,7 @@ header {
 h1 { /* title of webpage */
     color: lightblue;
     font-family: serif;
-    font-size: larger;
+    font-size: x-large;
     font-weight: 100;
 }
 h2 {
@@ -49,6 +49,7 @@ body {
 }
 /* LINKS */
 a.headerbtn {
+    font-size: larger;
     color: pink;
     text-decoration: none;
 }
@@ -168,15 +169,21 @@ button.disabled,button.disabled:hover,button.disabled:active {
     color: red;
 }
 /* CHAT PAGE */
-.chatbox { /* not in use */
+.chatbox {
     width: 80%;
     height: 80vh;
+    padding: 15px !important;
     border-color: lightblue !important;
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    text-align: left;
+    justify-content: left;
+    overflow: scroll;
+    overflow-x: hidden;
+    word-wrap: break-word;
 }
-.chatarea,.chatarea:focus {
+.chatarea,.chatarea:focus { /* not in use */
     width: 80%;
     height: 80vh;
     padding: 15px !important;
@@ -190,7 +197,22 @@ button.disabled,button.disabled:hover,button.disabled:active {
     font-size: 90%;
     */
 }
-.messageDiv {
+.messages {
+    height: 100%;
+    width: 100%;
+    flex: 1;
+    font-size: medium;
+}
+.statusMessage {
+    color: #cccccc;
+    text-decoration: none;
+}
+.senderOfMessage {
+    color: lightblue;
+    font-size: medium;
+    text-decoration: none;
+}
+.enterMessageDiv {
     width: 80%;
     height: max-content;
     padding-top: 10px;
@@ -214,18 +236,20 @@ button.disabled,button.disabled:hover,button.disabled:active {
     background: none;
 }
 /* PROFILE PAGE */
+.profiletable {
+    width: 70%;
+    border-collapse: collapse;
+}
+.profiletable td {
+    text-align: left;
+}
 #avatar {
-    width: 130px; 
-    height: 130px;
+    width: 140px; 
+    height: 140px;
     border-style: solid;
     border-width: 2px;
     border-color:#5a5859;
     border-radius: 5pt;
-}
-#aboutme {
-    font-size: medium;
-    white-space: normal;
-    word-break: break-word;
 }
 /* DISPLAY */
 .whitebox {
@@ -294,14 +318,4 @@ button.disabled,button.disabled:hover,button.disabled:active {
     flex-direction: column;
     width: 80vw;
     align-items: stretch;
-}
-
-.messages{
-    overflow-y: scroll;
-    flex: 1;
-    width: 100%;
-}
-
-#message {
-    flex: 1;
 }

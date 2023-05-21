@@ -15,3 +15,9 @@ login = LoginManager(app)
 socketio = SocketIO(app)
 
 from app import routes, models, chat
+
+def create_app():
+    app = Flask(__name__)
+    app.config.from_object(Config)
+
+    return app

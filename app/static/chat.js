@@ -9,23 +9,23 @@ socketio.on('connect', function() {
 
 socketio.on('status', function(data) {
     statusMessage(data);
-    $('#chat').val($('#chat').val() + '<' + data.msg + '>\n');
-    $('#chat').scrollTop($('#chat')[0].scrollHeight);
+    $('.chatbox').scrollTop($('.chatbox')[0].scrollHeight);
 });
 
 socketio.on('message', function(data) {
     createMessage(data);
     console.log("received msg from server");
-    $('#chat').val($('#chat').val() + data.msg + '\n');
-    $('#chat').scrollTop($('#chat')[0].scrollHeight);
+    $('.chatbox').scrollTop($('.chatbox')[0].scrollHeight);
 });
 
 $('#text').keypress(function(e) {
     var code = e.keyCode || e.which;
     if (code == 13) {
         text = $('#text').val();
-        socketio.emit("text", {msg: text});
-        $('#text').val('');
+        if (text != "") {
+            socketio.emit("text", {msg: text});
+            $('#text').val('');
+        }
     }
 });
 });
@@ -38,11 +38,12 @@ function leave_room() {
 
 const messages = document.getElementById("messages");
 const createMessage = (data) => {
+    var link = "/user/" + encodeURIComponent(data.user);
     const content = `
-        <div class="text">
+        <div id="chat"> <!-- individual message -->
             <span>
-                <strong>${data.user}:</strong>
-                ${data.msg}
+                <a href=${link} class="senderOfMessage">${data.user}:</a>
+                 ${data.msg}
             </span>
             <span class="muted">
                 <!-- Need to change the above -->
@@ -53,11 +54,12 @@ const createMessage = (data) => {
 };
 
 const statusMessage = (data) => {
+    var link = "/user/" + encodeURIComponent(data.user);
     const content = `
-        <div class="text">
+        <div id="chat"> <!-- individual message -->
             <span>
-                <strong>${data.user}</strong>
-                ${data.msg}
+                <a href=${link} class="statusMessage">${data.user}</a>
+                <span class="statusMessage">${data.msg}</span>
             </span>
             <span class="muted">
                 <!-- Need to change the above -->
@@ -76,9 +78,9 @@ const sendMessage = () => {
 
 
 // DISPLAY
-var messageDiv = document.getElementsByClassName("messageDiv")[0];
+var enterMessageDiv = document.getElementsByClassName("enterMessageDiv")[0];
 var messageField = document.getElementsByClassName("messageField")[0];
 
-messageDiv.addEventListener('click', function() {
+enterMessageDiv.addEventListener('click', function() {
     messageField.focus();
 });
