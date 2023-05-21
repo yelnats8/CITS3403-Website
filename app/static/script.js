@@ -12,7 +12,7 @@ var p1 = document.getElementById("p1");
 var p2 = document.getElementById("p2");
 
 // IF USER IS NOT SIGNED IN
-function disableHome() {
+function disableHome() { /* currently not in use */
     p1.innerHTML = "Please sign in or register to begin a chat.";
     p2.innerHTML = "No you have to be signed in to click this button.";
     for (var i = 0; i < startchatbtns.length; i++) {
@@ -22,8 +22,15 @@ function disableHome() {
 }
 
 // RESPONSIVITY FOR DEVICE TYPE
+
+// window.addEventListener("resize", reportWindowSize);
+window.onresize = function(event) {
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+    checkDevice(width,height);
+};
 checkDevice();
-function checkDevice() {
+function checkDevice(width,height) {
     var isMobile = false;
     var device = "";
     // determines touch support
@@ -39,15 +46,6 @@ function checkDevice() {
     }
     console.log("you are on " + device);
 }
-
-var width = window.innerWidth;
-var height = window.innerHeight;
-// window.addEventListener("resize", reportWindowSize);
-window.onresize = function(event) {
-    if (width < 700 && height < 1000) {
-        device == "mobile";
-    }
-};
 
 function resizeForMobile() {
     // make header and header items bigger
