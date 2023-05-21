@@ -14,10 +14,8 @@ socketio = SocketIO(app)
 
 from app import routes, models, chat
 
-def create_app(config_filename):
+def create_app():
     app = Flask(__name__)
-    app.config.from_pyfile(config_filename)
+    app.config.from_object(Config)
 
-    #Don't do this
-    db = SQLAlchemy(app)
-    db.init_app(app)
+    return app
