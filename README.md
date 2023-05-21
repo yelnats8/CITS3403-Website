@@ -50,9 +50,6 @@ Most of these steps are followig the [mega tutorial](https://blog.miguelgrinberg
     3. `flask db upgrade`
 4. Run with `python main.py`
 
-### Running Unit Tests
-insert text here...
-
 
 ## Running Unit Tests
 1. The unit tests require python's native unit testing API, pytest. Install pytest with `pip install pytest`
