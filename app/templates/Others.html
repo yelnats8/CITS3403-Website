@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>These are the currently registered users!</h1>
+<div>
+    <form action="{{ url_for('search') }}" method="GET" class="search-form">
+        <input type="text" name="username" placeholder="Search username">
+        <button type="submit">Search</button>
+    </form>
+    
+</div>
+
+    <u1>
+        {% for user in users %}
+            <li>
+                <img src="{{ user.avatar(50) }}" alt="Avatar" width="50" height="50">
+                {{ user.username }}
+            </li>
+        {% endfor %}
+    </u1>
+
+
+
+{% endblock %}
