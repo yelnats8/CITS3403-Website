@@ -13,3 +13,11 @@ login = LoginManager(app)
 socketio = SocketIO(app)
 
 from app import routes, models, chat
+
+def create_app(config_filename):
+    app = Flask(__name__)
+    app.config.from_pyfile(config_filename)
+
+    #Don't do this
+    db = SQLAlchemy(app)
+    db.init_app(app)
