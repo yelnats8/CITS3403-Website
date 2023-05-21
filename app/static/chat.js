@@ -9,15 +9,11 @@ socketio.on('connect', function() {
 
 socketio.on('status', function(data) {
     statusMessage(data);
-    $('#chat').val($('#chat').val() + '<' + data.msg + '>\n');
-    $('#chat').scrollTop($('#chat')[0].scrollHeight);
 });
 
 socketio.on('message', function(data) {
     createMessage(data);
     console.log("received msg from server");
-    $('#chat').val($('#chat').val() + data.msg + '\n');
-    $('#chat').scrollTop($('#chat')[0].scrollHeight);
 });
 
 $('#text').keypress(function(e) {
@@ -40,9 +36,9 @@ const messages = document.getElementById("messages");
 const createMessage = (data) => {
     var link = "/user/" + encodeURIComponent(data.user);
     const content = `
-        <div class="text">
+        <div> <!-- individual message -->
             <span>
-                <a href=${link}><strong>${data.user}:</strong></a>
+                <a href=${link} class="senderOfMessage">${data.user}:</a>
                  ${data.msg}
             </span>
             <span class="muted">
@@ -56,10 +52,10 @@ const createMessage = (data) => {
 const statusMessage = (data) => {
     var link = "/user/" + encodeURIComponent(data.user);
     const content = `
-        <div class="text">
+        <div> <!-- individual message -->
             <span>
-                <a href=${link}><strong>${data.user}</strong></a>
-                 <strong>${data.msg}</strong>
+                <a href=${link} class="statusMessage">${data.user}</a>
+                <span class="statusMessage">${data.msg}</span>
             </span>
             <span class="muted">
                 <!-- Need to change the above -->
@@ -78,9 +74,9 @@ const sendMessage = () => {
 
 
 // DISPLAY
-var messageDiv = document.getElementsByClassName("messageDiv")[0];
+var enterMessageDiv = document.getElementsByClassName("enterMessageDiv")[0];
 var messageField = document.getElementsByClassName("messageField")[0];
 
-messageDiv.addEventListener('click', function() {
+enterMessageDiv.addEventListener('click', function() {
     messageField.focus();
 });

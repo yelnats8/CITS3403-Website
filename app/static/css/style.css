@@ -168,15 +168,19 @@ button.disabled,button.disabled:hover,button.disabled:active {
     color: red;
 }
 /* CHAT PAGE */
-.chatbox { /* not in use */
+.chatbox {
     width: 80%;
     height: 80vh;
+    padding: 15px !important;
     border-color: lightblue !important;
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    text-align: left;
+    justify-content: left;
+    overflow: scroll;
 }
-.chatarea,.chatarea:focus {
+.chatarea,.chatarea:focus { /* not in use */
     width: 80%;
     height: 80vh;
     padding: 15px !important;
@@ -190,7 +194,22 @@ button.disabled,button.disabled:hover,button.disabled:active {
     font-size: 90%;
     */
 }
-.messageDiv {
+.messages {
+    height: 100%;
+    width: 100%;
+    flex: 1;
+    font-size: medium;
+}
+.statusMessage {
+    color: #cccccc;
+    text-decoration: none;
+}
+.senderOfMessage {
+    color: lightblue;
+    font-size: medium;
+    text-decoration: none;
+}
+.enterMessageDiv {
     width: 80%;
     height: max-content;
     padding-top: 10px;
@@ -295,14 +314,4 @@ button.disabled,button.disabled:hover,button.disabled:active {
     flex-direction: column;
     width: 80vw;
     align-items: stretch;
-}
-
-.messages{
-    overflow-y: scroll;
-    flex: 1;
-    width: 100%;
-}
-
-#message {
-    flex: 1;
 }
