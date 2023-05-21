@@ -80,12 +80,16 @@ function resizeForMobile() {
     console.log(marginPercent);
     content[0].style.marginTop = marginPercent + 20 + "%";
     content[0].style.width = "90%";
-    // make buttons bigger
-    for (var i = 0; i < startchatbtns.length; i++) {
-        startchatbtns[i].style.width = "160%";
+    try {
+        // make buttons bigger
+        for (var i = 0; i < startchatbtns.length; i++) {
+            startchatbtns[i].style.width = "160%";
+        }
+        // make interests div bigger
+        interestsDiv.style.width = startchatbtns[0].offsetWidth + "px";
+    } catch (error) {
+        return;
     }
-    // make interests div bigger
-    interestsDiv.style.width = startchatbtns[0].offsetWidth + "px";
 }
 
 function resizeForTablet() {
@@ -106,12 +110,21 @@ function resizeForTablet() {
     console.log(marginPercent);
     content[0].style.marginTop = marginPercent + "%";
     content[0].style.width = "90%";
-    // make buttons bigger
-    for (var i = 0; i < startchatbtns.length; i++) {
-        startchatbtns[i].style.width = "140%";
+    try {
+        // make buttons bigger
+        for (var i = 0; i < startchatbtns.length; i++) {
+            startchatbtns[i].style.width = "140%";
+        }
+        // make interests div bigger
+        interestsDiv.style.width = startchatbtns[0].offsetWidth + "px";
+    } catch (error) {
+        return;
     }
-    // make interests div bigger
-    interestsDiv.style.width = startchatbtns[0].offsetWidth + "px";
+}
+
+function scaleUpContent(scaleFactor) {
+    var allContent = document.querySelector('.content');
+    allContent.style.zoom = scaleFactor;
 }
 
 // from chat gpt pasted
@@ -131,8 +144,3 @@ function handleResize() {
     }
 }
 */
-
-function scaleUpContent(scaleFactor) {
-    var allContent = document.querySelector('.content');
-    allContent.style.zoom = scaleFactor;
-}
