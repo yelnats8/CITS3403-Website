@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{%block content%}
+<div class="chat-box">
+    <h2>{{session.prompt}}</h2>
+    <h3>Chat Room: {{session.room}}</h3>
+    <div class = "messages" id="messages">
+        {% for msg in history %}
+            <div class="text">
+                <span>
+                    <strong>{{msg.username}}</strong>
+                    {{msg.message}}
+                </span>
+            </div>
+        {% endfor %}
+        <br>
+    </div>
+    <a href="/history">Leave this room</a>
+<!--
+<h3>{{history.first().prompt}}, room code {{session.room}}</h3>
+<textarea class="whitebox chatarea" id="chat" cols="80" rows ="20" readonly>
+{% for msg in history %}{{msg.message}}
+{% endfor %}
+</textarea>
+<br>
+<div class="messageDiv">
+    <input type="text" class="messageField" id="text" placeholder="Enter your message here..." disabled>
+</div> 
+<br>
+
+
+
+{% endblock %}
+-->

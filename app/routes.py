@@ -1,14 +1,16 @@
 from flask import render_template, flash, redirect, url_for, request, session
 from app import app, db, socketio
 from app.forms import LoginForm, RegisterForm, ResetPassForm, EditProfileForm
-from app.models import User, ChatHistory
+from app.models import User, ChatHistory, PersonalChatHistory
 from flask_login import current_user, login_user, logout_user, login_required
 from datetime import datetime
 import random
+import json
+import os
 from string import ascii_uppercase
 
-rooms = {} #This is a dictionary to keep track of all the chat rooms we have currently, we should implement this into a database at some point
-
+rooms = {} #This is a dictionary to keep track of all the chat rooms we have currently
+queue = []
 #this function generates a 4 letters that acts as a unique room code
 def generate_unique_code(length):
     while True:
@@ -19,6 +21,18 @@ def generate_unique_code(length):
             break
     return code
 
+def generate_prompt():
+    path = os.getcwd()+"\prompts.json"
+    print(path)
+    try:
+        with open("prompts.json", 'r') as file:
+            content = file.read()
+            prompts = json.loads(content)
+            prompt = prompts["prompts"][random.randint(0,len(prompts["prompts"])-1)]
+        return prompt
+    except:
+        print("failed to open file")
+        return "No prompt found"
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/home', methods=['GET', 'POST'])
@@ -31,6 +45,7 @@ def home():
 
             join = request.form.get("join", False)
             create = request.form.get("create", False)
+            questionsMode = request.form.get("questionsMode", False)
 
             if join != False:
                 if not code:
@@ -40,16 +55,35 @@ def home():
                     flash('Room ' +code+ ' does not exist')
                     return render_template('home.html', title = 'Home')
                 session["room"] = code
+                session["prompt"] = ChatHistory.query.filter_by(room_code = code).first()
                 return redirect(url_for('chat'))
                 
-
             room = code
             if create != False:
                 room = generate_unique_code(4)
-                rooms[room] = {"members": 0, "messages": [], "usernames": []}
+                prompt = generate_prompt()
+                rooms[room] = {"members": 0, "messages": [], "usernames": [], "prompt": prompt}
 
                 session["room"] = room
+                session["prompt"] = prompt
                 return redirect(url_for('chat'))
+            
+            if questionsMode != False:
+                if len(queue) > 0:
+                    room = queue[0]
+                    session["room"] = room
+                    session["prompt"] = rooms[room]["prompt"]
+                    queue.pop(0)
+                    return redirect(url_for('chat'))
+                else:
+                    room = generate_unique_code(4)
+                    prompt = generate_prompt()
+                    rooms[room] = {"members": 0, "messages": [], "usernames": [], "prompt": prompt}
+
+                    queue.append(room)
+                    session["room"] = room
+                    session["prompt"] = prompt
+                    return redirect(url_for('chat'))
             
 
         else:
@@ -60,13 +94,22 @@ def home():
 
 @app.route('/chat')
 def chat():
-    code = session.get("room")
     """
     if room is None or room not in rooms:
         return redirect(url_for("home"))
     """
-    history = ChatHistory.query.filter_by(room_code = code)
+    history = ChatHistory.query.filter_by(room_code = session["room"])
     return render_template("chat.html", history = history)
+
+@app.route('/history')
+def history():
+    history = PersonalChatHistory.query.filter_by(username = current_user.username).group_by(PersonalChatHistory.room_code).order_by(PersonalChatHistory.date.desc())
+    return render_template("history.html", history = history)
+
+@app.route('/chathistory/<username>/<room_code>')
+def chathistory(username,room_code):
+    history = PersonalChatHistory.query.filter_by(username = username, room_code = room_code)
+    return render_template("chathistory.html", history = history)
 
 
 @app.route('/logout')
