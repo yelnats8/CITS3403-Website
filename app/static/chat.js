@@ -8,11 +8,14 @@ socketio.on('connect', function() {
 });
 
 socketio.on('status', function(data) {
+    statusMessage(data);
     $('#chat').val($('#chat').val() + '<' + data.msg + '>\n');
     $('#chat').scrollTop($('#chat')[0].scrollHeight);
 });
 
 socketio.on('message', function(data) {
+    createMessage(data);
+    console.log("received msg from server");
     $('#chat').val($('#chat').val() + data.msg + '\n');
     $('#chat').scrollTop($('#chat')[0].scrollHeight);
 });
@@ -32,33 +35,47 @@ function leave_room() {
         window.loaction.href = "{{ url_for('home') }}";
     });
 }
-/*
+
 const messages = document.getElementById("messages");
-const createMessage = (message) => {
+const createMessage = (data) => {
+    var link = "/user/" + encodeURIComponent(data.user);
     const content = `
         <div class="text">
             <span>
-                <strong>${message}</strong>
+                <a href=${link}><strong>${data.user}:</strong></a>
+                 ${data.msg}
             </span>
             <span class="muted">
-                ${new date().toLocaleString()}
                 <!-- Need to change the above -->
             </span>
         </div>
     `;
     messages.innerHTML += content;
 };
-socketio.on("message"), (data) => {
-    createMessage(data.msg);
-    console.log("received msg from server");
+
+const statusMessage = (data) => {
+    var link = "/user/" + encodeURIComponent(data.user);
+    const content = `
+        <div class="text">
+            <span>
+                <a href=${link}><strong>${data.user}</strong></a>
+                 <strong>${data.msg}</strong>
+            </span>
+            <span class="muted">
+                <!-- Need to change the above -->
+            </span>
+        </div>
+    `;
+    messages.innerHTML += content;
 };
+
 const sendMessage = () => {
     const message = document.getElementById("message");
     if (message.value == "") return;
-    socketio.emit("text", {data: message.value});
+    socketio.emit("text", {msg: message.value});
     message.value = "";
 };
-*/
+
 
 // DISPLAY
 var messageDiv = document.getElementsByClassName("messageDiv")[0];
