@@ -19,7 +19,8 @@ class User(UserMixin, db.Model):
     last_seen = db.Column(db.DateTime, default=datetime.utcnow())
     avatar_path = db.Column(db.String(200))
 
-    posts = db.relationship('Post', backref='author', lazy='dynamic')
+    posts = db.relationship('Post', backref='author', foreign_keys='Post.author_id')
+    profile_posts = db.relationship('Post', backref='profile',foreign_keys ='Post.profile_id')
 
     @property
     def last_seen_formatted(self):
@@ -67,10 +68,15 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(200))
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    author_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    profile_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+
+
+
 
     def __repr__(self):
-        return f"<Post(id={self.id}, body='{self.body}', timestamp={self.timestamp}, user_id={self.user_id})>"
+        return f"<Post(id={self.id}, body='{self.body}', timestamp={self.timestamp}, author_id ={self.author_id} profile_id={self.profile_id})>"
     
     def validate_post_length(post_body):
         return len(post_body) <= 200

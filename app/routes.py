@@ -169,19 +169,19 @@ def reset():
 @login_required
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
-
     if request.method == 'POST':
         post_body = request.form['post_body']
         post_length = Post.get_post_length(post_body)
         if not Post.validate_post_length(post_body):
             flash(f'Post Exceeds maximum length of 200 characters. Current length: {post_length} ')
         else:
-            new_post = Post(body=post_body, timestamp=datetime.utcnow(), author=user)
+            new_post = Post(body=post_body, timestamp=datetime.utcnow(), author=current_user, profile=user)
             db.session.add(new_post)
             db.session.commit()
-        
-    posts = user.posts.all()
+
+    posts = Post.query.filter_by(profile_id=user.id).order_by(Post.timestamp.desc()).all()
     return render_template('user.html',user=user,posts=posts)
+
 
 @app.route('/user/<username>/post/<post_id>/delete', methods=['POST'])
 @login_required
@@ -189,7 +189,7 @@ def delete_post(username, post_id):
     user = User.query.filter_by(username=username).first_or_404()
     post = Post.query.get(post_id)
 
-    if post and post.author == user:
+    if post and post.author_id == current_user.id:
         db.session.delete(post)
         db.session.commit()
     return redirect(url_for('user', username=username))
