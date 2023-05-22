@@ -40,6 +40,10 @@ Most of these steps are followig the [mega tutorial](https://blog.miguelgrinberg
     3. `flask db upgrade`
 4. Run with `python main.py`
 
+### Running Unit Tests
+1. Unit tests are done using pytest, so we install pytest if we haven't already
+2. invoke pytest in the directory
+
 ## Progress Log
 #### **(1/05/2023)** 
 - Miguel has added a basic user login logout system by following the mega tutorial. If you haven't already, please have a look at it. Stanley is working on a chat feature, building on top of the code. Stanley is following [this tutorial](https://www.youtube.com/watch?v=mkXdvs8H7TA)
@@ -70,3 +74,7 @@ Most of these steps are followig the [mega tutorial](https://blog.miguelgrinberg
 - pip install pytest
 
 there is a more detailed view in requirements.txt
+
+## Resources used
+- [Miguel Grinberg's Flask Mega Tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)
+- [Tech with Tim's Youtube Channel](https://www.youtube.com/c/TechWithTim) advice
