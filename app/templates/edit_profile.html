@@ -20,6 +20,7 @@
         </p>
         <p>
             {{ form.avatar.label }}<br>
+            <!--Creating avatar preview -->
             <input type="file" id="avatar-input" name="{{ form.avatar.name }}" accept="image/*" onchange="previewAvatar(event)">
         </p>
         <div style="display: flex; justify-content: center;">

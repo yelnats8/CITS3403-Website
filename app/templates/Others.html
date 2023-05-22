@@ -2,7 +2,7 @@
 
 {% block content %}
 <h1>These are the currently registered users!</h1>
-<div>
+<div> <!-- Getting to other user profiles -->
     <form action="{{ url_for('search') }}" method="GET" class="search-form">
         <input type="text" name="username" placeholder="Search username">
         <button type="submit">Search</button>
