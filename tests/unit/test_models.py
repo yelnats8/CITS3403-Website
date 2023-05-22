@@ -32,6 +32,24 @@ def test_post_length():
     post = Post(body="a" * 201, author_id=1, profile_id=1)
     assert Post.validate_post_length(post.body) == False
 
+def test_get_post_length():
+    assert Post.get_post_length('Hello') == 5
+    assert Post.get_post_length('') == 0
+
+def test_post_repr():
+    post = Post(id=1, body='Hello, world!', 
+                timestamp=datetime.utcnow(), author_id=1, profile_id=1)
+    expected_repr = f"<Post(id={post.id}, body='{post.body}', timestamp={post.timestamp}, author_id ={post.author_id} profile_id={post.profile_id})>"
+    assert str(post) == expected_repr
+
+def test_post_creation():
+    post = Post(id=1, body='Hello, world!', 
+                timestamp=datetime.utcnow(), author_id=1, profile_id=1)
+    assert post.id == 1
+    assert post.body == 'Hello, world!'
+    assert post.author_id == 1
+    assert post.profile_id == 1
+
 def test_chat_history():
     chat = ChatHistory(sender="Bowie_on_Fire", sender_id=1, room_code="1234", 
                        message="Hello, chat!", message_type=1, prompt="Hello?")
