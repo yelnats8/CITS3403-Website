@@ -402,8 +402,14 @@ button.disabled,button.disabled:hover,button.disabled:active {
 }
 
 .user-list img {
+    width: 80px;
+    height: 80px;
     margin-right: 10px;
     margin-left: 10px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #5a5859;
+    border-radius: 5pt;
 }
 
 .user-list .username {
@@ -411,11 +417,20 @@ button.disabled,button.disabled:hover,button.disabled:active {
 }
 .user-list .username-link {
     font-weight: bold;
-    color: blue;
-    text-decoration: underline;
+    color: #5a5859;
+    text-decoration: none;
 }
 
 .user-list .username-link:hover {
-    color: darkblue;
+    color: #5a5859
 }
 
+.submitsearchbtn {
+    border-radius: 2pt;
+    padding: 3px;
+    border: none;
+    border-color: #85b1c0;
+    color: #435a61;     
+    background-color: #a4e1f5;
+    cursor: pointer;
+}
