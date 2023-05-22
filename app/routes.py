@@ -216,7 +216,6 @@ def edit_profile():
             max_file_size = 10 * 1024 * 1024  # 10 MB (example value, adjust as needed)
             file_data = file.read()  # Read the file data into memory
             file_size = len(file_data)
-            flash (f'file size is {file_size}')
             if file_size > max_file_size:
                 flash ('File Size exceeds the allowed limit of 10mb!')
                 return redirect(url_for('edit_profile'))
