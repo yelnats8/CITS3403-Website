@@ -17,7 +17,7 @@ class RegisterForm(FlaskForm):
     submit = SubmitField('Register')
     
     def validate_username(self, username):
-        if len(username.data) > 64:       #literally shouldnt be possible
+        if len(username.data) > 64:     
             raise ValidationError('Maximum length is 64 characters!')
         
         user = User.query.filter_by(username=username.data).first()
