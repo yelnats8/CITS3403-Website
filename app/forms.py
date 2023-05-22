@@ -11,12 +11,15 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Sign In')
 
 class RegisterForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
+    username = StringField('Username', validators=[DataRequired(), Length(max=64)])
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Register')
     
     def validate_username(self, username):
+        if len(username.data) > 64:       #literally shouldnt be possible
+            raise ValidationError('Maximum length is 64 characters!')
+        
         user = User.query.filter_by(username=username.data).first()
         if user is not None:
             raise ValidationError('Username already exists!')
