@@ -387,6 +387,7 @@ button.disabled,button.disabled:hover,button.disabled:active {
 
 /* FOr users page */
 .user-list {
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     list-style: none;
@@ -397,6 +398,7 @@ button.disabled,button.disabled:hover,button.disabled:active {
     align-items: center;
     margin-bottom: 10px;
     margin-top: 10px;
+    flex-basis: 33%
 }
 
 .user-list img {
