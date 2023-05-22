@@ -333,7 +333,7 @@ button.disabled,button.disabled:hover,button.disabled:active {
     height: 400px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     text-align: center;
     overflow-y: auto;
