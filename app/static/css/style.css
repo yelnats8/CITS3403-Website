@@ -282,8 +282,7 @@ button.disabled,button.disabled:hover,button.disabled:active {
   .avatar {
     width: 50px;
     height: 50px;
-  }
-  
+}
   .post-content {
     display: flex;
     flex-direction: column;
@@ -333,7 +332,7 @@ button.disabled,button.disabled:hover,button.disabled:active {
     height: 400px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     text-align: center;
     overflow-y: auto;
