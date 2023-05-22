@@ -333,10 +333,10 @@ button.disabled,button.disabled:hover,button.disabled:active {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     text-align: center;
-    overflow-y: auto;
-    overflow-x: hidden
+    overflow: auto;
+    white-space: nowrap;
   }
 /* FOR MOBILE DEVICES */
 .contentMobile {
